@@ -3,9 +3,9 @@ import numpy as np
 from scipy.linalg import eig
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Graphical Sandbox", layout="wide")
+st.set_page_config(page_title="Interactive Graphical Display", layout="wide")
 
-st.title("🔮 Part 2: Graphical Intuition Sandbox")
+st.title("Interactive Graphical Sandbox")
 st.markdown("""
 In this sandbox, you can see how changing the input vector $v$ shifts the underlying matrix operator. 
 
