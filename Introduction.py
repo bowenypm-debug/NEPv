@@ -14,7 +14,7 @@ To understand what an NEPv is and why it is unique, it helps to look at the topi
 # ---------------------------------------------------------
 # The Three Levels of Eigenproblems
 # ---------------------------------------------------------
-st.markdown("##The Three Levels of Eigenvalue/Eigenvector Problems")
+st.markdown("## 🪜 The Three Levels of Eigenvalue/Eigenvector Problems")
 
 col1, col2, col3 = st.columns(3)
 
