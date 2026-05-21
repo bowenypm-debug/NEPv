@@ -92,7 +92,7 @@ with col_viz:
     st.pyplot(fig)
 
 with col_mat:
-    st.markdown(r"### 🔍 Live $3 \\times 3$ Matrix Evaluation")
+    st.markdown(r"### Live $3 \times 3$ Matrix Evaluation")
     st.write("Your slider positions have constructed the following custom active numerical state:")
     
     st.latex(rf"""
