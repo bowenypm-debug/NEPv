@@ -151,7 +151,7 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([4, 1])
 
 with col_footer1:
-    st.write("📖 **Progress:** `Page 2 of 3` (Graphical Sandbox)")
+    st.write("Page 2 of 3")
 
 with col_footer2:
     if st.button("Next: Algebraic Solvers ➡️", use_container_width=True):
