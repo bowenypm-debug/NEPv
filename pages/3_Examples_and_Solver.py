@@ -17,18 +17,30 @@ Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions li
 st.subheader("📚 Worked Example Problem")
 
 st.markdown(r"""
-**The Problem:** Consider a system where a particle's energy matrix $A(v)$ changes based on its spatial state vector $v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$. Find the steady-state eigenvector ($A(v)v = \lambda v$) given the nonlinear model:
+To understand how a Nonlinear Eigenvalue Problem works, let's look at a concrete, pure mathematical example.
+
+**The Setup:** Consider a $2 \times 2$ matrix $A(v)$ whose entries directly change depending on the components of the vector $v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$:
 
 $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
 
-**Analytical Insight:** If we test a guess vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, the matrix evaluates to $A(v) = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$. 
+Our objective is to find a steady-state vector $v$ and a scaling constant $\lambda$ that satisfy the core NEPv equation:
+$$A(v)v = \lambda v$$
 
-Notice that computing the transformation gives:
-$$A(v)v = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
+---
 
-Because this output vector is **not parallel** to our input $v$, the vector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ is *not* a valid solution to the NEPv.
+### 🔍 testing an initial guess
 
-**The Goal:** Use the numerical solvers below to find the true vector where the output aligns perfectly with the input!
+Let's see what happens if we guess a simple unit vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
+
+1. **Evaluate the Matrix:** Plugging $v_1 = 1$ and $v_2 = 0$ into our model yields:
+   $$A(v) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
+
+2. **Compute the Output Product:** Now, we multiply this resulting matrix by our original vector $v$:
+   $$A(v)v = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
+
+3. **Check for Alignment:** For $v$ to be a solution, the output vector must be a perfect scalar multiple of our input vector. Because $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$ does not point in the same direction as $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$, **our guess is not a solution.**
+
+**The Goal:** Use the numerical solvers below to find the true coordinate vector where the matrix output aligns perfectly parallel with the input!
 """)
 
 # ---------------------------------------------------------
