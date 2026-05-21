@@ -63,7 +63,7 @@ ax.plot_wireframe(sphere_x, sphere_y, sphere_z, color="gray", alpha=0.15, linewi
 
 # Plot 1: Draw the User's Purple Input Probe Vector (v)
 ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
-          color="#884EA2", linewidth=4, arrow_length_ratio=0.15, label="Input Vector (v)")
+          color="purple", linewidth=4, arrow_length_ratio=0.15, label="Input Vector (v)")
 
 # Plot 2: Draw the 3 output eigenvectors scaling them by their real eigenvalues
 colors = ["#E74C3C", "#3498DB", "#2ECC71"] # Red, Blue, Green
