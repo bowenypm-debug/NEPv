@@ -7,7 +7,7 @@ st.set_page_config(page_title="Graphical Sandbox", layout="wide")
 
 st.title("🔮 Part 2: 3D Graphical Intuition Sandbox")
 st.markdown("""
-By scaling the problem up to a $3 \times 3$ system, our vector $v$ can travel across a **3D Unit Sphere**. 
+By scaling the problem up to a 3 $\times$ 3 system, our vector $v$ can travel across a **3D Unit Sphere**. 
 
 **Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
 Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
