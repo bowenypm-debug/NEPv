@@ -79,7 +79,7 @@ st.pyplot(fig)
 
 # Display the Matrix Evaluation directly underneath
 st.markdown("---")
-st.markdown(r"### 🔍 Live $3 \times 3$ Matrix Evaluation")
+st.markdown(r"### The 3 $\times$ 3 Matrix Evaluation")
 st.write("Your slider positions have constructed the following custom active numerical state matrix:")
 
 st.latex(rf"""
