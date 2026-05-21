@@ -26,11 +26,7 @@ $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{p
 Our objective is to find a steady-state vector $v$ and a scaling constant $\lambda$ that satisfy the core NEPv equation:
 $$A(v)v = \lambda v$$
 
----
-
-### 🔍 testing an initial guess
-
-Let's see what happens if we guess a simple unit vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
+Let's take an initial guess and see what happens if we guess a simple unit vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
 
 1. **Evaluate the Matrix:** Plugging $v_1 = 1$ and $v_2 = 0$ into our model yields:
    $$A(v) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
