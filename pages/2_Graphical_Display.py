@@ -59,7 +59,7 @@ w = np.linspace(0, np.pi, 30)
 sphere_x = np.outer(np.cos(u), np.sin(w))
 sphere_y = np.outer(np.sin(u), np.sin(w))
 sphere_z = np.outer(np.ones(np.size(u)), np.cos(w))
-ax.plot_wireframe(sphere_x, sphere_y, sphere_z, color="rgba(220,220,220,0.15)", linewidth=0.5)
+ax.plot_wireframe(sphere_x, sphere_y, sphere_z, color="gray", alpha=0.15, linewidth=0.5)
 
 # Plot 1: Draw the User's Purple Input Probe Vector (v)
 ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
