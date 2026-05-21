@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Example and Solvers", layout="wide")
 
-st.title("📊 Part 3: Algorithmic Trajectory Tracking")
+st.title("Part 3: Examples and Calculator")
 st.markdown("""
 Now that you have discovered solutions *graphically*, let's watch how computers find them *algebraically*. 
 Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a **Unit Circle**. 
@@ -162,3 +162,15 @@ with col2:
         margin=dict(l=10, r=10, t=10, b=10)
     )
     st.plotly_chart(fig_map, key="solver_trajectory_chart")
+# ---------------------------------------------------------
+# Page Navigation Footer
+# ---------------------------------------------------------
+st.markdown("---")
+col_footer1, col_footer2 = st.columns([4, 1])
+
+with col_footer1:
+    st.write("`Page 3 of 3")
+
+with col_footer2:
+    if st.button("↩️ Introduction", use_container_width=True):
+        st.switch_page("Home.py")
