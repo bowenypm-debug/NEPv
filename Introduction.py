@@ -34,5 +34,5 @@ with col_footer1:
     st.write("Page 1 of 3")
 
 with col_footer2:
-    if st.button("➡️ Next: Graphical Visualiser", use_container_width=True):
+    if st.button("➡️ Next: Graphical Visualiser"):
         st.switch_page("pages/2_Graphical_Display.py")
