@@ -28,7 +28,7 @@ with col1:
     """)
 
 with col2:
-    st.markdown("### Level 2: Standard NEP")
+    st.markdown("### Level 2: NEP")
     st.warning("**Nonlinear in Parameter $\lambda$**")
     st.markdown(r"""
     In a standard Nonlinear Eigenvalue Problem (NEP), the matrix entries depend nonlinearly on the *eigenvalue* parameter itself, often written as $T(\lambda)$. 
@@ -37,7 +37,7 @@ with col2:
     """)
 
 with col3:
-    st.markdown("### Level 3: The NEPv")
+    st.markdown("### Level 3: NEPv")
     st.success("**Nonlinear in Vector $v$**")
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend directly on the state or coordinates of the *eigenvector* itself. 
@@ -70,6 +70,65 @@ On this website, you will explore two primary classes of solvers:
 2. **Newton-Based Methods:** A more aggressive optimization strategy. It treats the problem as a root-finding challenge, looking at the "residual error" gradient to make sharp, mathematically calculated adjustments that force the input and output into rapid alignment.
 """)
 
+# ---------------------------------------------------------
+# Real-World Applications
+# ---------------------------------------------------------
+st.markdown("---")
+st.markdown("## 🌍 Real-World Applications: Where is this used?")
+st.write("Because the matrix transformation updates itself dynamically based on the state vector, the NEPv framework is the underlying math engine for several breakthroughs:")
+
+col_app1, col_app2 = st.columns(2)
+
+with col_app1:
+    st.markdown("### 🔬 Quantum Chemistry & Material Science")
+    st.markdown(r"""
+    When simulating molecules or crystal lattices, the electrostatic forces acting on electrons depend entirely on where the electron cloud density (the state vector $v$) currently resides. 
+    
+    Solving the **Kohn-Sham equations** in Density Functional Theory (DFT) is fundamentally an NEPv problem. To calculate stable molecular orbits, the matrix and the vector must find perfect harmony.
+    """)
+
+with col_app2:
+    st.markdown("### 🤖 Machine Learning & Graph Clustering")
+    st.markdown(r"""
+    In advanced data analysis, traditional linear data cuts often fail to isolate complex groupings. 
+    
+    By introducing nonlinear constraint matrices that change dynamically based on the partitioning vector, spectral clustering algorithms can isolate intricate, interleaved data communities that traditional standard eigen-solvers pass right through.
+    """)
+
+# ---------------------------------------------------------
+# Solvers and Pitfalls
+# ---------------------------------------------------------
+st.markdown("---")
+st.markdown(r"""
+## 🛠️ How do we solve an NEPv?
+Because the matrix changes continuously as $v$ moves, we cannot use standard closed-form algebraic determinants ($\det(A - \lambda I) = 0$). Instead, computers must rely on **iterative numerical methods** to hunt down stable states. 
+
+On this website, you will explore two primary classes of solvers:
+1. **Self-Consistent Field (SCF) Iteration:** A fixed-point iteration strategy. The computer takes a guess vector $v_k$, builds the static matrix $A(v_k)$, extracts its traditional dominant eigenvector to use as the *next* guess $v_{k+1}$, and repeats until the vector stops moving.
+2. **Newton-Based Methods:** A root-finding challenge. It tracks the "residual error" gradient to make sharp, mathematically calculated vector adjustments to force the input and output into rapid alignment.
+
+### ⚠️ Algorithmic Pitfalls (The Catch)
+Numerical optimization isn't always smooth sailing. When you dive into our calculator page, you will observe two classic pitfalls:
+""")
+
+col_pit1, col_pit2 = st.columns(2)
+
+with col_pit1:
+    st.error("💥 Infinite Oscillations")
+    st.markdown("""
+    If the nonlinearity weights ($\alpha$ or $\beta$) are scaled up too high, the matrix landscape warps too aggressively. 
+    
+    Instead of settling down, the **SCF solver** will get caught trapped in an infinite loop, violently bouncing back and forth between two non-solution vectors forever.
+    """)
+
+with col_pit2:
+    st.error("🕳️ Local Minima & Guess Sensitivity")
+    st.markdown("""
+    Because nonlinear equations create multi-valley landscapes, changing your starting vector guess ($v_0$) by just a tiny fraction can cause the solver to isolate a completely different equilibrium point—or fail to converge entirely. 
+    
+    Finding a robust initial guess is often half the battle!
+    """)
+    
 # ---------------------------------------------------------
 # Page Navigation Footer
 # ---------------------------------------------------------
