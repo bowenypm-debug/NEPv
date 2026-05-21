@@ -178,7 +178,7 @@ with col2:
 # Page Navigation Footer
 # ---------------------------------------------------------
 st.markdown("---")
-col_footer1, col_footer2 = st.columns([2, 1])
+col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
     st.write("Page 3 of 3")
