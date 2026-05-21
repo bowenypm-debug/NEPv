@@ -154,5 +154,5 @@ with col_footer1:
     st.write("Page 2 of 3")
 
 with col_footer2:
-    if st.button("Next: Algebraic Solvers ➡️", use_container_width=True):
+    if st.button("➡️ Next: Examples and Calculator", use_container_width=True):
         st.switch_page("pages/3_Algebraic_Solvers.py")
