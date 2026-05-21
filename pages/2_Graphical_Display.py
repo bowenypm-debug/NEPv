@@ -148,11 +148,11 @@ with col_mat2:
 # Page Navigation Footer
 # ---------------------------------------------------------
 st.markdown("---")
-col_footer1, col_footer2 = st.columns([4, 1])
+col_footer1, col_footer2 = st.columns([2, 1])
 
 with col_footer1:
     st.write("Page 2 of 3")
 
 with col_footer2:
-    if st.button("➡️ Next: Examples and Calculator", use_container_width=True):
+    if st.button("➡️ Next: Examples and Calculator"):
         st.switch_page("pages/3_Examples_and_Solver.py")
