@@ -23,3 +23,16 @@ Because the problem is nonlinear, mathematical guarantees break down:
 """)
 
 st.info("👈 Use the sidebar navigation to move to Page 2 and visualize this live!")
+
+# ---------------------------------------------------------
+# Page Navigation Footer
+# ---------------------------------------------------------
+st.markdown("---")
+col_footer1, col_footer2 = st.columns([4, 1])
+
+with col_footer1:
+    st.write("📖 **Progress:** `Page 1 of 3` (Theory & Concepts)")
+
+with col_footer2:
+    if st.button("Next: Graphical Sandbox ➡️", use_container_width=True):
+        st.switch_page("pages/2_Graphical_Display.py")
