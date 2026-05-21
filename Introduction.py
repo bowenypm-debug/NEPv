@@ -2,7 +2,7 @@ import streamlit as st
 
 st.set_page_config(page_title="NEPv Introduction", layout="wide")
 
-st.title("🚀 An Introduction to Nonlinear Eigenvalue Problems (NEPv)")
+st.title("An Introduction to Nonlinear Eigenvalue Problems (NEPv)")
 st.markdown("---")
 
 st.markdown(r"""
@@ -14,7 +14,7 @@ To understand what an NEPv is and why it is unique, it helps to look at the topi
 # ---------------------------------------------------------
 # The Three Levels of Eigenproblems
 # ---------------------------------------------------------
-st.markdown("## 🪜 The Three Levels of Eigenproblems")
+st.markdown("##The Three Levels of Eigenvalue/Eigenvector Problems")
 
 col1, col2, col3 = st.columns(3)
 
@@ -50,7 +50,7 @@ with col3:
 # ---------------------------------------------------------
 st.markdown("---")
 st.markdown(r"""
-## ❓ What does an NEPv actually do?
+## What does an NEPv actually do?
 
 In a traditional system, finding an eigenvector is like finding a fixed path on a permanent map. 
 
@@ -60,7 +60,7 @@ This framework is highly critical in advanced computational sciences, such as ca
 
 ---
 
-## 🛠️ How do we solve an NEPv?
+## How do we solve an NEPv?
 
 Because the matrix changes continuously as $v$ moves, we generally cannot use standard closed-form algebraic shortcuts (like finding $\det(A - \lambda I) = 0$). Instead, computers must rely on **iterative numerical methods** to hunt down stable solutions. 
 
@@ -74,13 +74,13 @@ On this website, you will explore two primary classes of solvers:
 # Real-World Applications
 # ---------------------------------------------------------
 st.markdown("---")
-st.markdown("## 🌍 Real-World Applications: Where is this used?")
+st.markdown("## Real-World Applications: Where is this used?")
 st.write("Because the matrix transformation updates itself dynamically based on the state vector, the NEPv framework is the underlying math engine for several breakthroughs:")
 
 col_app1, col_app2 = st.columns(2)
 
 with col_app1:
-    st.markdown("### 🔬 Quantum Chemistry & Material Science")
+    st.markdown("### Quantum Chemistry & Material Science")
     st.markdown(r"""
     When simulating molecules or crystal lattices, the electrostatic forces acting on electrons depend entirely on where the electron cloud density (the state vector $v$) currently resides. 
     
@@ -88,7 +88,7 @@ with col_app1:
     """)
 
 with col_app2:
-    st.markdown("### 🤖 Machine Learning & Graph Clustering")
+    st.markdown("### Machine Learning & Graph Clustering")
     st.markdown(r"""
     In advanced data analysis, traditional linear data cuts often fail to isolate complex groupings. 
     
@@ -100,21 +100,21 @@ with col_app2:
 # ---------------------------------------------------------
 st.markdown("---")
 st.markdown(r"""
-## 🛠️ How do we solve an NEPv?
+## How do we solve an NEPv?
 Because the matrix changes continuously as $v$ moves, we cannot use standard closed-form algebraic determinants ($\det(A - \lambda I) = 0$). Instead, computers must rely on **iterative numerical methods** to hunt down stable states. 
 
 On this website, you will explore two primary classes of solvers:
 1. **Self-Consistent Field (SCF) Iteration:** A fixed-point iteration strategy. The computer takes a guess vector $v_k$, builds the static matrix $A(v_k)$, extracts its traditional dominant eigenvector to use as the *next* guess $v_{k+1}$, and repeats until the vector stops moving.
 2. **Newton-Based Methods:** A root-finding challenge. It tracks the "residual error" gradient to make sharp, mathematically calculated vector adjustments to force the input and output into rapid alignment.
 
-### ⚠️ Algorithmic Pitfalls (The Catch)
+### Algorithmic Pitfalls (The Catch)
 Numerical optimization isn't always smooth sailing. When you dive into our calculator page, you will observe two classic pitfalls:
 """)
 
 col_pit1, col_pit2 = st.columns(2)
 
 with col_pit1:
-    st.error("💥 Infinite Oscillations")
+    st.error("Infinite Oscillations")
     st.markdown("""
     If the nonlinearity weights ($\alpha$ or $\beta$) are scaled up too high, the matrix landscape warps too aggressively. 
     
@@ -122,7 +122,7 @@ with col_pit1:
     """)
 
 with col_pit2:
-    st.error("🕳️ Local Minima & Guess Sensitivity")
+    st.error("Local Minima & Guess Sensitivity")
     st.markdown("""
     Because nonlinear equations create multi-valley landscapes, changing your starting vector guess ($v_0$) by just a tiny fraction can cause the solver to isolate a completely different equilibrium point—or fail to converge entirely. 
     
