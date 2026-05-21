@@ -3,7 +3,7 @@ import numpy as np
 from scipy.linalg import eig
 import plotly.graph_objects as go
 
-st.set_page_config(page_title="Example and Solvers", layout="wide")
+st.set_page_config(page_title="Example and Calculator", layout="wide")
 
 st.title("Part 3: Examples and Calculator")
 st.markdown("""
