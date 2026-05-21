@@ -115,7 +115,7 @@ col_pit1, col_pit2 = st.columns(2)
 
 with col_pit1:
     st.error("Infinite Oscillations")
-    st.markdown("""
+    st.markdown(r"""
     If the nonlinearity weights ($\alpha$ or $\beta$) are scaled up too high, the matrix landscape warps too aggressively. 
     
     Instead of settling down, the **SCF solver** will get caught trapped in an infinite loop, violently bouncing back and forth between two non-solution vectors forever.
