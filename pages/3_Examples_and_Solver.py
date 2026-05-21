@@ -14,17 +14,22 @@ Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions li
 # ---------------------------------------------------------
 # Step 1: Show an Example Question
 # ---------------------------------------------------------
-st.markdown("### 📝 Worked Example Problem")
-with st.expander("🔍 Click to view a typical NEPv Exam/Assignment Question", expanded=True):
-    st.markdown("""
-    **The Problem:** Consider a system where a particle's energy matrix $A(v)$ changes based on its spatial state vector $v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$. 
-    Find the steady-state eigenvector ($A(v)v = \lambda v$) given the nonlinear model:
-    
-    $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
-    
-    *   **Analytical Insight:** If $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, then $A(v) = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$. Notice that $A(v)v = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$, which is **not** parallel to $v$. Thus, $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ is *not* a solution.
-    *   **The Goal:** Use the solvers below to find the true vector where the output aligns perfectly with the input.
-    """)
+st.subheader("📚 Worked Example Problem")
+
+st.markdown(r"""
+**The Problem:** Consider a system where a particle's energy matrix $A(v)$ changes based on its spatial state vector $v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$. Find the steady-state eigenvector ($A(v)v = \lambda v$) given the nonlinear model:
+
+$$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
+
+**Analytical Insight:** If we test a guess vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$, the matrix evaluates to $A(v) = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$. 
+
+Notice that computing the transformation gives:
+$$A(v)v = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
+
+Because this output vector is **not parallel** to our input $v$, the vector $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$ is *not* a valid solution to the NEPv.
+
+**The Goal:** Use the numerical solvers below to find the true vector where the output aligns perfectly with the input!
+""")
 
 # ---------------------------------------------------------
 # Step 2: Interactive Custom Matrix Input
