@@ -75,42 +75,30 @@ for idx in range(3):
               color=colors[idx], linewidth=2.5, linestyle="--", arrow_length_ratio=0.1,
               label=f"Eigenvector {idx+1} (λ={eigenval:.2f})")
 
-# Graphic Formatting
-ax.set_xlim([-2.5, 2.5])
-ax.set_ylim([-2.5, 2.5])
-ax.set_zlim([-2.5, 2.5])
-ax.set_xlabel('X Axis')
-ax.set_ylabel('Y Axis')
-ax.set_zlabel('Z Axis')
-ax.legend(loc="upper left")
-ax.grid(True, linestyle=":", alpha=0.5)
+st.pyplot(fig)
 
-# Render columns layout in Streamlit
-col_viz, col_mat = st.columns([3, 2])
+# Display the Matrix Evaluation directly underneath
+st.markdown("---")
+st.markdown(r"### 🔍 Live $3 \times 3$ Matrix Evaluation")
+st.write("Your slider positions have constructed the following custom active numerical state matrix:")
 
-with col_viz:
-    st.pyplot(fig)
+st.latex(rf"""
+A(v) = \begin{{pmatrix}} 
+1.0 + {alpha}({current_v[0]:.2f})^2 & 0.5 & 0.2 \\ 
+0.5 & 0.8 + {beta}({current_v[1]:.2f})^2 & 0.3 \\ 
+0.2 & 0.3 & 0.5 + 1.5({current_v[2]:.2f})^2
+\end{{pmatrix}} = \begin{{pmatrix}} 
+{A_curr[0,0]:.2f} & {A_curr[0,1]:.2f} & {A_curr[0,2]:.2f} \\ 
+{A_curr[1,0]:.2f} & {A_curr[1,1]:.2f} & {A_curr[1,2]:.2f} \\ 
+{A_curr[2,0]:.2f} & {A_curr[2,1]:.2f} & {A_curr[2,2]:.2f} 
+\end{{pmatrix}}
+""")
 
-with col_mat:
-    st.markdown(r"### Live 3 $\times$ 3 Matrix Evaluation")
-    st.write("Your slider positions have constructed the following custom active numerical state:")
-    
-    st.latex(rf"""
-    A(v) = \begin{{pmatrix}} 
-    1.0 + {alpha}({current_v[0]:.2f})^2 & 0.5 & 0.2 \\ 
-    0.5 & 0.8 + {beta}({current_v[1]:.2f})^2 & 0.3 \\ 
-    0.2 & 0.3 & 0.5 + 1.5({current_v[2]:.2f})^2
-    \end{{pmatrix}} = \begin{{pmatrix}} 
-    {A_curr[0,0]:.2f} & {A_curr[0,1]:.2f} & {A_curr[0,2]:.2f} \\ 
-    {A_curr[1,0]:.2f} & {A_curr[1,1]:.2f} & {A_curr[1,2]:.2f} \\ 
-    {A_curr[2,0]:.2f} & {A_curr[2,1]:.2f} & {A_curr[2,2]:.2f} 
-    \end{{pmatrix}}
-    """)
-    
-    st.markdown("##### 💡 Vector Readout Summary:")
-    st.info(f"Your probe location is currently locked at coordinates:\n* **X:** `{current_v[0]:.3f}`\n* **Y:** `{current_v[1]:.3f}`\n* **Z:** `{current_v[2]:.3f}`")
-    
-    st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
+st.markdown("##### 💡 Vector Readout Summary:")
+st.info(f"Your probe location is currently locked at coordinates:  \n* **X:** `{current_v[0]:.3f}`  \n* **Y:** `{current_v[1]:.3f}`  \n* **Z:** `{current_v[2]:.3f}`")
+
+st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
+
 # ---------------------------------------------------------
 # Page Navigation Footer
 # ---------------------------------------------------------
