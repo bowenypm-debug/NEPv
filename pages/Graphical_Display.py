@@ -144,3 +144,13 @@ with col_mat2:
         st.warning("High Nonlinearity: Because your scaling factors are large, notice how moving the purple vector just a fraction of an inch wildly swings the direction of the target dashed output states. This extreme warping is exactly what makes finding mathematical convergence so difficult.")
     else:
         st.info("Standard Nonlinearity Mode: Moving your input vector dynamically shifts the weights along the diagonal matrix positions, dragging the system's principal modes along with it.")
+
+st.markdown("---")
+col_footer1, col_footer2 = st.columns([4, 1])
+
+with col_footer1:
+    st.write("📖 **Progress:** `Page 2 of 3` (Graphical Sandbox)")
+
+with col_footer2:
+    if st.button("Next: Algebraic Solvers ➡️", use_container_width=True):
+        st.switch_page("pages/3_Algebraic_Solvers.py")
