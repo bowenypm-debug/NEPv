@@ -31,8 +31,8 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([4, 1])
 
 with col_footer1:
-    st.write("📖 **Progress:** `Page 1 of 3` (Theory & Concepts)")
+    st.write("Page 1 of 3")
 
 with col_footer2:
-    if st.button("Next: Graphical Sandbox ➡️", use_container_width=True):
+    if st.button("➡️ Next: Graphical Visualiser", use_container_width=True):
         st.switch_page("pages/2_Graphical_Display.py")
