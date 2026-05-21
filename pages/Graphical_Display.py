@@ -5,7 +5,7 @@ import plotly.graph_objects as go
 
 st.set_page_config(page_title="Interactive Graphical Display", layout="wide")
 
-st.title("Interactive Graphical Sandbox")
+st.title("Part 2: Interactive Graphical Sandbox")
 st.markdown("""
 In this sandbox, you can see how changing the input vector $v$ shifts the underlying matrix operator. 
 
