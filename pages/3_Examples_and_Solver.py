@@ -77,7 +77,7 @@ $$v_{k+1} = v_k - \Delta v$$
 
 with st.expander("📊 View Step-by-Step Worked Example Question Using Newton Based Methods (2 by 2)"):
     st.markdown(r"""
-    Using the same question setup as the SCF method of
+    Using the same question setup as the SCF method of:
     $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
     
     **Step 0: The Current State**  
