@@ -54,13 +54,13 @@ with col_mat_in2:
 with col_mat_in3:
     base_a22 = st.number_input("Base A22", value=0.5, step=0.1)
     beta = st.slider("Nonlinearity Weight (β)", 0.0, 4.0, 0.5, 0.1)
-with col_mat_in4:
-   st.latex(rf"""
-       A(v) = \begin{{pmatrix}} 
-       {base_a11} + \alpha|v_1|^2 & {off_diag} \\ 
-       {off_diag} & {base_a22} + \beta|v_2|^2 
-       \end{{pmatrix}}
-       """)
+st.markdown("##### 📐 Your Active Equation Setup:")
+st.latex(rf"""
+A(v) = \begin{{pmatrix}} 
+{base_a11} + {alpha}|v_1|^2 & {off_diag} \\ 
+{off_diag} & {base_a22} + {beta}|v_2|^2 
+\end{{pmatrix}}
+""")
 
 # Core Math Functions using Custom User Variables
 def get_custom_A(v):
