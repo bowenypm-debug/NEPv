@@ -41,11 +41,16 @@ with col_controls:
 
     st.markdown("---")
     st.markdown("**View of Diagram**")
-    theta = st.slider("Horizontal Camera Angle", 0.0, 180.0, 45.0, 5.0)
-    phi = st.slider("Vertical Camera Angle", 0.0, 360.0, 30.0, 5.0)
+    # Horizontal rotation loops all the way around space (0 to 360)
+    theta = st.slider("Horizontal Camera Angle", 0.0, 360.0, 45.0, 5.0)
+    # Vertical rotation looks from top to bottom (0 to 180)
+    phi = st.slider("Vertical Camera Angle", 0.0, 180.0, 30.0, 5.0)
 
 with col_graph:
-    ax.view_init(elev=phi, azim=theta)
+    # Hardcoded stable weights for alpha (1.5) and beta (0.5) to keep the NEPv math 
+    # perfectly operational underneath without confusing the user with extra sliders.
+    alpha_fixed = 1.5
+    beta_fixed = 0.5
     
     A_curr = np.array([
         [1.0 + alpha_fixed * (current_v[0]**2), 0.5, 0.2],
@@ -75,9 +80,9 @@ with col_graph:
     ax.set_ylim([-1.2, 1.2])
     ax.set_zlim([-1.2, 1.2])
     
-    # --- FIXED: Re-apply the camera rotation angles from our sliders ---
-    ax.view_init(elev=theta, azim=phi)
-    # -------------------------------------------------------------------
+    # --- FIXED: Correctly mapping vertical to elevation (phi) and horizontal to azimuth (theta) ---
+    ax.view_init(elev=phi, azim=theta)
+    # ---------------------------------------------------------------------------------------------
     
     ax.legend(loc="upper left", bbox_to_anchor=(-0.1, 1.15), fontsize="small")
     
