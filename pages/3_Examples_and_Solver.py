@@ -11,37 +11,99 @@ Now that you have discovered solutions *graphically*, let's watch how computers 
 Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a **Unit Circle**. 
 """)
 
-# ---------------------------------------------------------
-# Step 1: Show an Example Question
-# ---------------------------------------------------------
-st.subheader("📚 Worked Example Problem")
-
+# =========================================================================
+# 1. SCF Deep Dive & Collapsible Worked Example
+# =========================================================================
+st.subheader("1. The Self-Consistent Field (SCF) Iteration")
 st.markdown(r"""
-To understand how a Nonlinear Eigenvalue Problem works, let's look at a concrete, pure mathematical example.
+The **Self-Consistent Field (SCF)** approach (often called linear freezing) breaks down a nonlinear problem into a repeating loop of standard linear algebra questions. 
 
-**The Setup:** Consider a $2 \times 2$ matrix $A(v)$ whose entries directly change depending on the components of the vector $v = \begin{pmatrix} v_1 \\ v_2 \end{pmatrix}$:
-
-$$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
-
-Our objective is to find a steady-state vector $v$ and a scaling constant $\lambda$ that satisfy the core NEPv equation:
-$$A(v)v = \lambda v$$
-
-Let's take an initial guess and see what happens if we guess a simple unit vector $v = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$.
-
-1. **Evaluate the Matrix:** Plugging $v_1 = 1$ and $v_2 = 0$ into our model yields:
-   $$A(v) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
-
-2. **Compute the Output Product:** Now, we multiply this resulting matrix by our original vector $v$:
-   $$A(v)v = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
-
-3. **Check for Alignment:** For $v$ to be a solution, the output vector must be a perfect scalar multiple of our input vector. Because $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$ does not point in the same direction as $\begin{pmatrix} 1 \\ 0 \end{pmatrix}$, **our guess is not a solution.**
-
-**The Goal:** Use the numerical solvers below to find the true coordinate vector where the matrix output aligns perfectly parallel with the input!
+Instead of trying to handle the shifting landscape all at once, SCF simplifies the process:
+1. Start with an initial guess vector $v_0$.
+2. Plug that vector into your equations to **freeze** the nonlinear terms, creating a temporary, standard linear matrix: $A_{\text{temp}} = A(v_0)$.
+3. Solve for the traditional linear eigenvalues and eigenvectors of $A_{\text{temp}}$.
+4. Select the output eigenvector that points closest to your original guess, normalize it, and make it your updated guess $v_1$.
+5. Repeat this cycle until the vector stops changing ($v_k \approx v_{k+1}$). When the input vector matches the output eigenvector, you have achieved *self-consistency*.
 """)
 
-# ---------------------------------------------------------
-# Step 2: Interactive Custom Matrix Input
-# ---------------------------------------------------------
+with st.expander("📊 View Step-by-Step SCF Worked Example ($2 \times 2$)"):
+    st.markdown(r"""
+    Let's look at how the SCF algorithm handles our baseline matrix problem:
+    $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
+    
+    **Step 0: Initial Guess**  
+    Let's guess a simple starting unit vector lying fully on the X-axis: 
+    $$v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
+    
+    **Iteration 1: Freezing the Matrix**  
+    We plug $v_1 = 1$ and $v_2 = 0$ into the nonlinear formulas to lock in a static linear matrix:
+    $$A(v_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
+    
+    Next, we find the linear eigenvectors of this frozen matrix. The dominant eigenvector (the one with the largest eigenvalue, $\lambda \approx 2.85$) is:
+    $$e_{\text{max}} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
+    
+    Since this is the closest available linear eigenvector to our original guess, we select and normalize it to establish our next update:
+    $$v_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
+    
+    **Iteration 2: The Next Loop**  
+    Now, we repeat the freezing process using our updated coordinates ($v_1 = 0.943, v_2 = 0.332$):
+    $$A(v_1) = \begin{pmatrix} 1.0 + 1.5(0.943)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0.332)^2 \end{pmatrix} \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
+    
+    Computing the dominant linear eigenvector for this newly warped matrix yields:
+    $$v_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
+    
+    With every loop, the difference between the input vector and the resulting output vector shrinks. Within a few more steps, the updates will lock onto a static coordinate where the input and output match perfectly!
+    """)
+
+st.markdown("---")
+
+# =========================================================================
+# 2. Newton Method Deep Dive & Collapsible Worked Example
+# =========================================================================
+st.subheader("2. Newton-Based Optimization Methods")
+st.markdown(r"""
+While SCF is highly intuitive, it can struggle or oscillate endlessly if the nonlinear warping is too aggressive. **Newton-based methods** take a completely different geometric strategy by converting the problem into a root-finding challenge.
+
+We construct a residual function $F(v)$ that tracks our total balance error. For an exact solution, the matrix product minus the scaled vector must equal zero:
+$$F(v) = A(v)v - \lambda v = \vec{0}$$
+
+Instead of passively waiting for an eigenvector loop to settle, a Newton solver evaluates the local slope of this error landscape (using derivatives or step-by-step differences). With each step, it senses the steepness under its feet and takes a deliberate jump directly down the path toward zero:
+$$v_{k+1} = v_k - \Delta v$$
+
+* **The Advantage:** When your guess gets reasonably close to a solution, Newton-based optimization exhibits incredibly fast convergence, narrowing in on the target coordinates in very few steps.
+* **The Disadvantage:** Because it relies heavily on local slopes, a poor initial guess can occasionally cause the algorithm to lose its footing and jump entirely in the wrong direction.
+""")
+
+with st.expander("📊 View Step-by-Step Newton Worked Example Intuition"):
+    st.markdown(r"""
+    Let's look at how a Newton approach calculates its trajectory corrections using our same base setup.
+    
+    **Step 0: The Current State**  
+    Imagine we are sitting at our initial guess vector $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. As we calculated earlier, the matrix output at this point is:
+    $$A(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
+    
+    The Rayleigh quotient gives us our current estimated scaling factor ($\lambda = v^T A v = 2.5$).
+    
+    **Step 1: Measuring the Residual (Error)**  
+    We calculate our directional error vector $F(v_0)$ by checking how far our output misses a perfect scalar match:
+    $$F(v_0) = A(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
+    
+    This tells the solver that the vector has zero error along the X-axis, but a significant structural mismatch of $+1.0$ pointing along the Y-axis.
+    
+    **Step 2: The Newton Correction Jump**  
+    Using a step-scaling factor (like the $0.4$ multiplier used in our playground engine below), the algorithm alters the vector coordinates in the opposite direction of the error to push it downhill toward zero:
+    $$v_{\text{raw}} = v_0 - 0.4 \cdot F(v_0) = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
+    
+    Finally, we project this raw jump back onto our unit boundary circle to preserve our required scaling length ($||v||_2 = 1$):
+    $$v_1 = \frac{v_{\text{raw}}}{||v_{\text{raw}}||} \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
+    
+    Notice how this single, calculated step immediately shifts the vector into the correct quadrant to find the balancing point!
+    """)
+
+# =========================================================================
+# 3. Interactive Custom Matrix Input (Kept Exactly Same)
+# =========================================================================
+st.markdown("---")
 st.markdown("### 🛠️ Design Your Own Matrix Problem")
 st.write("Modify the base parameters below to see how your own custom NEPv configuration behaves.")
 
@@ -54,6 +116,7 @@ with col_mat_in2:
 with col_mat_in3:
     base_a22 = st.number_input("Base A22", value=0.5, step=0.1)
     beta = st.slider("Nonlinearity Weight (β)", 0.0, 4.0, 0.5, 0.1)
+
 st.markdown("Your Active Equation Setup:")
 st.latex(rf"""
 A(v) = \begin{{pmatrix}} 
@@ -105,9 +168,9 @@ def run_newton(v_start, max_iter=15):
         v = v_next
     return np.array(path)
 
-# ---------------------------------------------------------
-# Step 3: Trajectory Simulation Display
-# ---------------------------------------------------------
+# =========================================================================
+# 4. Trajectory Simulation Display (Kept Exactly Same)
+# =========================================================================
 st.markdown("---")
 st.markdown("### 🏃‍♂️ Run the Solvers")
 
