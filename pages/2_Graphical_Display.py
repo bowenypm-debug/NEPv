@@ -24,16 +24,14 @@ st.write("Adjust the parameters below to see the 3D space warp in real time.")
 col_controls, col_graph = st.columns([1, 2])
 
 with col_controls:
-    st.markdown("#### 🎛️ System Parameters")
-    
     st.markdown("**Nonlinearity Weights**")
     alpha = st.slider("Weight (α)", 0.0, 4.0, 1.5, 0.1, key="sandbox_alpha")
     beta = st.slider("Weight (β)", 0.0, 4.0, 0.5, 0.1, key="sandbox_beta")
     
     st.markdown("---")
-    st.markdown("**Vector Orientation Probe**")
-    theta = st.slider("Latitude Angle (θ)", 0.0, 180.0, 45.0, 5.0)
-    phi = st.slider("Longitude Angle (φ)", 0.0, 360.0, 30.0, 5.0)
+    st.markdown("**View of Diagram**")
+    theta = st.slider("Horizontal Angle", 0.0, 180.0, 45.0, 5.0)
+    phi = st.slider("Vertical Angle", 0.0, 360.0, 30.0, 5.0)
     
     # Calculate current state coordinates from angle sliders
     theta_rad = np.radians(theta)
