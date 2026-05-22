@@ -116,7 +116,7 @@ However, for every matrix, there are a few special, magic directions where **zer
 In standard linear algebra, the landscape is frozen. The magic dashed arrows are glued in place. You just have to find them.
 
 But in this sandbox, we are dealing with a **Nonlinear Eigenvalue Problem (NEPv)**. This means **the landscape changes based on where you look.** 
-* The moment you move your **Crimson Probe Vector**, the entire matrix morphs (look at the numbers updating in the matrix above!).
+* The moment you move your **Probe Vector**, the entire matrix morphs (look at the numbers updating in the matrix above!).
 * Because the matrix morphs, the magic dashed arrows **move, twist, grow, and shrink in real time.**
 
 ##### 3. How to "Win" This Simulation
