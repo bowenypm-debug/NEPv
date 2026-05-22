@@ -76,7 +76,8 @@ $$v_{k+1} = v_k - \Delta v$$
 
 with st.expander("📊 View Step-by-Step Worked Example Question Using Newton Based Methods (2 by 2)"):
     st.markdown(r"""
-    Let's look at how a Newton approach calculates its trajectory corrections using our same base setup.
+    Using the same question setup as the SCF method of
+    $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
     
     **Step 0: The Current State**  
     Imagine we are sitting at our initial guess vector $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. As we calculated earlier, the matrix output at this point is:
