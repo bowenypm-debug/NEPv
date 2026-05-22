@@ -42,7 +42,7 @@ Let's take an initial guess and see what happens if we guess a simple unit vecto
 # ---------------------------------------------------------
 # Step 2: Interactive Custom Matrix Input
 # ---------------------------------------------------------
-st.markdown("### Design Your Own Matrix Problem")
+st.markdown("### 🛠️ Design Your Own Matrix Problem")
 st.write("Modify the base parameters below to see how your own custom NEPv configuration behaves.")
 
 col_mat_in1, col_mat_in2, col_mat_in3, col_mat_in4 = st.columns(4)
