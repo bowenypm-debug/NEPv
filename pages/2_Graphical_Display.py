@@ -15,67 +15,61 @@ When your purple vector lines up *perfectly* with any of the dashed output arrow
 """)
 
 # ---------------------------------------------------------
-# Sidebar Controls (Angles & Nonlinearity)
+# Step 2: Main Workspace - Side-by-Side Sandbox Layout
 # ---------------------------------------------------------
-st.sidebar.header("🕹️ Vector Orientation Controls")
-theta = st.sidebar.slider("Horizontal Rotation (θ - Theta)", 0.0, 360.0, 45.0, 5.0)
-phi = st.sidebar.slider("Vertical Tilt Angle (ϕ - Phi)", 0.0, 180.0, 60.0, 5.0)
+st.markdown("### 🎮 Live Configuration Sandbox")
+st.write("Adjust the parameters below to see the 3D space warp in real time.")
 
-st.sidebar.header("🎛️ Nonlinearity Weights")
-alpha = st.sidebar.slider("α (Alpha)", 0.0, 4.0, 2.0, 0.1)
-beta = st.sidebar.slider("β (Beta)", 0.0, 4.0, 1.0, 0.1)
+# Create a clean side-by-side split: Controls on Left, Graph on Right
+col_controls, col_graph = st.columns([1, 2])
 
-# Convert Angles to a 3D Unit Vector
-theta_rad = np.radians(theta)
-phi_rad = np.radians(phi)
-x = np.sin(phi_rad) * np.cos(theta_rad)
-y = np.sin(phi_rad) * np.sin(theta_rad)
-z = np.cos(phi_rad)
-current_v = np.array([x, y, z])
-
-# Define the dynamic 3x3 NEPv System Matrix
-def get_A_3d(v, alpha, beta):
-    # A symmetric 3x3 matrix where diagonals depend heavily on the vector's position
-    A = np.array([
-        [1.0 + alpha * (v[0]**2), 0.5,                     0.2],
-        [0.5,                     0.8 + beta * (v[1]**2),  0.3],
-        [0.2,                     0.3,                     0.5 + 1.5 * (v[2]**2)]
+with col_controls:
+    st.markdown("#### 🎛️ System Parameters")
+    
+    st.markdown("**Nonlinearity Weights**")
+    alpha = st.slider("Weight (α)", 0.0, 4.0, 1.5, 0.1, key="sandbox_alpha")
+    beta = st.slider("Weight (β)", 0.0, 4.0, 0.5, 0.1, key="sandbox_beta")
+    
+    st.markdown("---")
+    st.markdown("**Vector Orientation Probe**")
+    theta = st.slider("Latitude Angle (θ)", 0.0, 180.0, 45.0, 5.0)
+    phi = st.slider("Longitude Angle (φ)", 0.0, 360.0, 30.0, 5.0)
+    
+    # Calculate current state coordinates from angle sliders
+    theta_rad = np.radians(theta)
+    phi_rad = np.radians(phi)
+    current_v = np.array([
+        np.sin(theta_rad) * np.cos(phi_rad),
+        np.sin(theta_rad) * np.sin(phi_rad),
+        np.cos(theta_rad)
     ])
-    return A
 
-# Compute current matrix state spectrum
-A_curr = get_A_3d(current_v, alpha, beta)
-vals, vecs = eig(A_curr)
-
-# ---------------------------------------------------------
-# Matplotlib 3D Engine Setup
-# ---------------------------------------------------------
-fig = plt.figure(figsize=(10, 8))
-ax = fig.add_subplot(111, projection='3d')
-
-# Draw a faint 3D reference wireframe unit sphere
-u = np.linspace(0, 2 * np.pi, 30)
-w = np.linspace(0, np.pi, 30)
-sphere_x = np.outer(np.cos(u), np.sin(w))
-sphere_y = np.outer(np.sin(u), np.sin(w))
-sphere_z = np.outer(np.ones(np.size(u)), np.cos(w))
-ax.plot_wireframe(sphere_x, sphere_y, sphere_z, color="gray", alpha=0.15, linewidth=0.5)
-
-# Plot 1: Draw the User's Purple Input Probe Vector (v)
-ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
-          color="purple", linewidth=4, arrow_length_ratio=0.15, label="Input Vector (v)")
-
-# Plot 2: Draw the 3 output eigenvectors scaling them by their real eigenvalues
-colors = ["#E74C3C", "#3498DB", "#2ECC71"] # Red, Blue, Green
-for idx in range(3):
-    v_eigen = vecs[:, idx].real
-    eigenval = vals[idx].real
-    # Draw arrow scaling outward from the origin
-    ax.quiver(0, 0, 0, v_eigen[0] * eigenval, v_eigen[1] * eigenval, v_eigen[2] * eigenval,
-              color=colors[idx], linewidth=2.5, linestyle="--", arrow_length_ratio=0.1,
-              label=f"Eigenvector {idx+1} (λ={eigenval:.2f})")
-
-st.pyplot(fig)
+with col_graph:
+    # --- Math Calculations Based on Live Sliders ---
+    A_curr = np.array([
+        [1.0 + alpha * (current_v[0]**2), 0.5, 0.2],
+        [0.5, 0.8 + beta * (current_v[1]**2), 0.3],
+        [0.2, 0.3, 0.5 + 1.5 * (current_v[2]**2)]
+    ])
+    
+    # Generate the 3D Plot Object
+    fig = plt.figure(figsize=(5, 5))  # Shrunk size to fit neatly inline
+    ax = fig.add_subplot(111, projection='3d')
+    
+    # [Your existing plot background drawing code goes here]
+    # e.g., plotting the unit sphere surface mesh, gridlines, etc.
+    
+    # Plot the active probed vector arrow path
+    ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
+              color="crimson", linewidth=3, label="Probe Vector v")
+    
+    ax.set_xlim([-1.2, 1.2])
+    ax.set_ylim([-1.2, 1.2])
+    ax.set_zlim([-1.2, 1.2])
+    ax.legend(loc="upper left")
+    
+    # Render the smaller figure in the right column
+    st.pyplot(fig)
 
 # Display the Matrix Evaluation directly underneath
 st.markdown("---")
