@@ -9,9 +9,9 @@ st.title("Graphical Interactive Playground")
 st.markdown(r"""
 By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
 
-**Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
-Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
-When your purple vector lines up *perfectly* with any of the dashed output arrows, you have unlocked an equilibrium state of the NEPv!
+**Your Objective:** Use the rotation sliders on the left to slide your crimson probe vector $v$ smoothly across the 3D space. 
+Watch how the 3 distinct system output eigenvectors (green, blue, and purple) twist, grow, and shrink in response. 
+When your crimson vector lines up *perfectly* with any of the dashed output arrows, you have unlocked an equilibrium state of the NEPv!
 """)
 
 # ---------------------------------------------------------
@@ -28,6 +28,7 @@ with col_controls:
     alpha = st.slider("Weight (α)", 0.0, 4.0, 1.5, 0.1, key="sandbox_alpha")
     beta = st.slider("Weight (β)", 0.0, 4.0, 0.5, 0.1, key="sandbox_beta")
     
+    st.markdown("---")
     st.markdown("**View of Diagram**")
     theta = st.slider("Horizontal Angle", 0.0, 180.0, 45.0, 5.0)
     phi = st.slider("Vertical Angle", 0.0, 360.0, 30.0, 5.0)
@@ -49,21 +50,30 @@ with col_graph:
         [0.2, 0.3, 0.5 + 1.5 * (current_v[2]**2)]
     ])
     
+    # NEW ADDITION: Calculate the live eigenvalues/vectors for this configuration state
+    vals, vecs = eig(A_curr)
+    
     # Generate the 3D Plot Object
     fig = plt.figure(figsize=(5, 5))  # Shrunk size to fit neatly inline
     ax = fig.add_subplot(111, projection='3d')
     
-    # [Your existing plot background drawing code goes here]
-    # e.g., plotting the unit sphere surface mesh, gridlines, etc.
+    # [Your existing plot background drawing code goes here if you add mesh later]
+    
+    # NEW ADDITION: Plot the 3 live system linear eigenvectors dynamically
+    colors = ["#2ECC71", "#3498DB", "#9B59B6"] # Green, Blue, Purple
+    for i in range(3):
+        ax.quiver(0, 0, 0, vecs[0, i].real, vecs[1, i].real, vecs[2, i].real,
+                  color=colors[i], linewidth=2, linestyle="--", 
+                  label=f"Eigenvector {i+1} (λ={vals[i].real:.2f})")
     
     # Plot the active probed vector arrow path
     ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
-              color="crimson", linewidth=3, label="Probe Vector v")
+              color="crimson", linewidth=4, label="Probe Vector v")
     
     ax.set_xlim([-1.2, 1.2])
     ax.set_ylim([-1.2, 1.2])
     ax.set_zlim([-1.2, 1.2])
-    ax.legend(loc="upper left")
+    ax.legend(loc="upper left", bbox_to_anchor=(-0.1, 1.15), fontsize="small")
     
     # Render the smaller figure in the right column
     st.pyplot(fig)
@@ -97,8 +107,8 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([2, 1])
 
 with col_footer1:
-    st.write("Page 2 of 3")
+    st.write("📖 **Progress:** `Page 2 of 3` (3D Sandbox Display)")
 
 with col_footer2:
-    if st.button("➡️ Next: Examples and Calculator"):
-        st.switch_page("pages/3_Examples_and_Solver.py")
+    if st.button("➡️ Next: Examples and Calculator", use_container_width=True):
+        st.switch_page("pages/2_Examples_and_Solver.py")
