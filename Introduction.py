@@ -100,14 +100,7 @@ with col_app2:
 # ---------------------------------------------------------
 st.markdown("---")
 st.markdown(r"""
-## How do we solve an NEPv?
-Because the matrix changes continuously as $v$ moves, we cannot use standard closed-form algebraic determinants ($\det(A - \lambda I) = 0$). Instead, computers must rely on **iterative numerical methods** to hunt down stable states. 
-
-On this website, you will explore two primary classes of solvers:
-1. **Self-Consistent Field (SCF) Iteration:** A fixed-point iteration strategy. The computer takes a guess vector $v_k$, builds the static matrix $A(v_k)$, extracts its traditional dominant eigenvector to use as the *next* guess $v_{k+1}$, and repeats until the vector stops moving.
-2. **Newton-Based Methods:** A root-finding challenge. It tracks the "residual error" gradient to make sharp, mathematically calculated vector adjustments to force the input and output into rapid alignment.
-
-### Algorithmic Pitfalls (The Catch)
+Algorithmic Pitfalls (The Catch)
 Numerical optimization isn't always smooth sailing. When you dive into our calculator page, you will observe two classic pitfalls:
 """)
 
