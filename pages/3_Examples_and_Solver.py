@@ -127,7 +127,7 @@ with col1:
     
     st.markdown("##### 🏁 Race Results")
     st.write(f"**SCF Iterations:** `{len(scf_trajectory) - 1}` steps")
-    st.write(f"**Newton-Flavor Iterations:** `{len(newton_trajectory) - 1}` steps")
+    st.write(f"**Newton Iterations:** `{len(newton_trajectory) - 1}` steps")
     
     if len(scf_trajectory) > 14:
         st.error("⚠️ **Solver Pitfall:** SCF is stuck oscillating endlessly! The landscape is warping too aggressively for it to balance.")
@@ -136,44 +136,35 @@ with col1:
         st.write(f"**Final Calculated Vector:** `[{scf_trajectory[-1][0]:.3f}, {scf_trajectory[-1][1]:.3f}]`")
 
 with col2:
-    fig_map = go.Figure()
+    # Build Matplotlib figure object
+    fig_map, ax = plt.subplots(figsize=(6, 6))
     
-    # Background Unit Circle
-    angles = np.linspace(0, 2*np.pi, 100)
-    fig_map.add_trace(go.Scatter(
-        x=np.cos(angles), y=np.sin(angles),
-        mode="lines", line=dict(color="rgba(150,150,150,0.4)", width=1.5, dash="dot"),
-        name="Unit Circle Boundary"
-    ))
+    # 1. Plot a perfect reference Unit Circle Boundary
+    angles = np.linspace(0, 2 * np.pi, 200)
+    ax.plot(np.cos(angles), np.sin(angles), color="darkgray", linestyle="--", linewidth=1.5, label="Unit Circle Boundary")
     
-    # Start Point
+    # 2. Plot the initial starting guess vector position marked with a distinct star symbol
     v_norm_start = v_init / np.linalg.norm(v_init)
-    fig_map.add_trace(go.Scatter(
-        x=[v_norm_start[0]], y=[v_norm_start[1]],
-        mode="markers", marker=dict(color="black", size=12, symbol="star"),
-        name="Initial Guess (v0)"
-    ))
+    ax.plot(v_norm_start[0], v_norm_start[1], marker="*", color="black", markersize=14, linestyle="None", zorder=5, label="Initial Guess ($v_0$)")
     
-    # Paths
-    fig_map.add_trace(go.Scatter(
-        x=scf_trajectory[:, 0], y=scf_trajectory[:, 1],
-        mode="lines+markers", line=dict(color="#2ECC71", width=3),
-        marker=dict(size=8), name="SCF Path"
-    ))
-    fig_map.add_trace(go.Scatter(
-        x=newton_trajectory[:, 0], y=newton_trajectory[:, 1],
-        mode="lines+markers", line=dict(color="#E67E22", width=3),
-        marker=dict(size=8, symbol="diamond"), name="Newton-Flavor Path"
-    ))
+    # 3. Plot the step-by-step Self-Consistent Field (SCF) mathematical iteration trajectory
+    ax.plot(scf_trajectory[:, 0], scf_trajectory[:, 1], marker="o", color="#2ECC71", linewidth=2.5, markersize=6, label="SCF Path")
     
-    fig_map.update_layout(
-        xaxis=dict(range=[-1.5, 1.5], zeroline=True, gridcolor="whitesmoke"),
-        yaxis=dict(range=[-1.5, 1.5], zeroline=True, gridcolor="whitesmoke"),
-        width=550, height=450,
-        legend=dict(yanchor="top", y=0.99, xanchor="left", x=0.01),
-        margin=dict(l=10, r=10, t=10, b=10)
-    )
-    st.plotly_chart(fig_map, key="solver_trajectory_chart")
+    # 4. Plot the step-by-step Newton optimization trajectory
+    ax.plot(newton_trajectory[:, 0], newton_trajectory[:, 1], marker="d", color="#E67E22", linewidth=2.5, markersize=6, label="Newton Path")
+    
+    # Grid system formatting updates
+    ax.set_xlim([-1.5, 1.5])
+    ax.set_ylim([-1.5, 1.5])
+    ax.axhline(0, color='silver', linewidth=1)
+    ax.axvline(0, color='silver', linewidth=1)
+    ax.set_aspect('equal', adjustable='box')
+    ax.grid(True, linestyle=":", alpha=0.6)
+    ax.legend(loc="upper left", framealpha=0.9)
+    
+    # Render figure directly onto your webpage layout canvas
+    st.pyplot(fig_map)
+
 # ---------------------------------------------------------
 # Page Navigation Footer
 # ---------------------------------------------------------
