@@ -14,46 +14,47 @@ Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions li
 # =========================================================================
 # 1. SCF Deep Dive & Collapsible Worked Example
 # =========================================================================
-st.subheader("1. The Self-Consistent Field (SCF) Iteration")
+st.subheader("1. Strategy A: The Self-Consistent Field (SCF) Loop")
 st.markdown(r"""
-The **Self-Consistent Field (SCF)** approach (often called linear freezing) breaks down a nonlinear problem into a repeating loop of standard linear algebra questions. 
+Imagine you are standing in front of a magical, warped mirror. When you move, the mirror itself bends and changes shape. Your goal is to find a spot where your reflection points in the **exact same direction** you are standing.
 
-Instead of trying to handle the shifting landscape all at once, SCF simplifies the process:
-1. Start with an initial guess vector $v_0$.
-2. Plug that vector into your equations to **freeze** the nonlinear terms, creating a temporary, standard linear matrix: $A_{\text{temp}} = A(v_0)$.
-3. Solve for the traditional linear eigenvalues and eigenvectors of $A_{\text{temp}}$.
-4. Select the output eigenvector that points closest to your original guess, normalize it, and make it your updated guess $v_1$.
-5. Repeat this cycle until the vector stops changing ($v_k \approx v_{k+1}$). When the input vector matches the output eigenvector, you have achieved *self-consistency*.
+The **Self-Consistent Field (SCF)** strategy handles this changing mirror with a simple "freeze-and-step" game:
+1. **Stand on a spot** ($v_0$) and look at the mirror.
+2. **Freeze time.** Calculate exactly how the mirror looks based *only* on where you are currently standing.
+3. **Look at the reflection** that the frozen mirror throws out.
+4. **Step to that new reflection spot** ($v_1$). 
+5. **Unfreeze time, and repeat.**
+
+If you keep stepping to where the mirror tells you to go, you hope the mirror stops warping and you both settle down into a perfect balance. This state of balance is what mathematicians call **self-consistency**.
 """)
 
-with st.expander("📊 View Step-by-Step Worked Example Question Using SCF (2 by 2)"):
+with st.expander("📊 View This Step By Step Worked Example Question Using SCF (2 by 2)"):
     st.markdown(r"""
-    Let's look at how the SCF algorithm handles our baseline matrix problem:
-    
+    Let's watch how this algorithm plays the game using our baseline problem:
     $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
     
-    **Step 0: Initial Guess**  
-    Let's guess a simple starting unit vector lying fully on the X-axis: 
+    **Step 0: Our First Guess**  
+    Let's point our vector straight along the X-axis: 
     $$v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
-    **Iteration 1: Freezing the Matrix**  
-    We plug $v_1 = 1$ and $v_2 = 0$ into the nonlinear formulas to lock in a static linear matrix:
+    **Iteration 1: Freezing the Mirror**  
+    We plug our coordinates ($v_1 = 1, v_2 = 0$) into the formula. This temporarily locks the mirror into a regular, static grid:
     $$A(v_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
     
-    Next, we find the linear eigenvectors of this frozen matrix. The dominant eigenvector (the one with the largest eigenvalue, $\lambda \approx 2.85$) is:
-    $$e_{\text{max}} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
+    We ask this frozen grid: *"Where do you want to point things?"* The strongest direction this specific grid naturally pushes vectors toward is:
+    $$\text{Reflection} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
-    Since this is the closest available linear eigenvector to our original guess, we select and normalize it to establish our next update:
+    So, our algorithm takes a step and updates our position to that exact spot:
     $$v_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     **Iteration 2: The Next Loop**  
-    Now, we repeat the freezing process using our updated coordinates ($v_1 = 0.943, v_2 = 0.332$):
-    $$A(v_1) = \begin{pmatrix} 1.0 + 1.5(0.943)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0.332)^2 \end{pmatrix} \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
+    Now we are standing at a new spot ($v_1 = 0.943, v_2 = 0.332$). Because we moved, the mirror warps again! We calculate its new frozen shape:
+    $$A(v_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
-    Computing the dominant linear eigenvector for this newly warped matrix yields:
+    This new shape throws out a slightly different reflection:
     $$v_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
-    With every loop, the difference between the input vector and the resulting output vector shrinks. Within a few more steps, the updates will lock onto a static coordinate where the input and output match perfectly!
+    With every loop, the amount the mirror changes gets smaller and smaller, until our input position and the mirror's output direction line up perfectly!
     """)
 
 st.markdown("---")
@@ -61,45 +62,44 @@ st.markdown("---")
 # =========================================================================
 # 2. Newton Method Deep Dive & Collapsible Worked Example
 # =========================================================================
-st.subheader("2. Newton-Based Optimization Methods")
+st.subheader("2. Strategy B: The Newton-Based Error Fixer")
 st.markdown(r"""
-While SCF is highly intuitive, it can struggle or oscillate endlessly if the nonlinear warping is too aggressive. **Newton-based methods** take a completely different geometric strategy by converting the problem into a root-finding challenge.
+SCF is simple, but it has a weakness: if the mirror warps too violently when you move, you might end up wildly bouncing back and forth forever without ever settling down.
 
-We construct a residual function $F(v)$ that tracks our total balance error. For an exact solution, the matrix product minus the scaled vector must equal zero:
-$$F(v) = A(v)v - \lambda v = \vec{0}$$
+**Newton-based methods** use a smarter, more active steering strategy. Instead of just blindly stepping wherever the reflection points, it measures your **miss distance** (the error):
+$$\text{Error} = \text{Where the mirror points your reflection} - \text{Where you are standing} = \vec{0}$$
 
-Instead of passively waiting for an eigenvector loop to settle, a Newton solver evaluates the local slope of this error landscape (using derivatives or step-by-step differences). With each step, it senses the steepness under its feet and takes a deliberate jump directly down the path toward zero:
-$$v_{k+1} = v_k - \Delta v$$
+Think of it like driving a car:
+* Instead of waiting to see where the wind blows you, you actively look at how far you are drifting off the center line.
+* If you look down and see you are drifting too far to the right, you intentionally steer to the left to cancel out the error.
 
-* **The Advantage:** When your guess gets reasonably close to a solution, Newton-based optimization exhibits incredibly fast convergence, narrowing in on the target coordinates in very few steps.
-* **The Disadvantage:** Because it relies heavily on local slopes, a poor initial guess can occasionally cause the algorithm to lose its footing and jump entirely in the wrong direction.
+Because it actively calculates how to fix its own mistakes using the local "slope" of the landscape, Newton's method can sprint to a solution much faster than SCF. However, because it relies on local steering cues, if you start with a terrible initial guess, it might panic, steer off the road, and get completely lost!
 """)
 
-with st.expander("📊 View Step-by-Step Worked Example Question Using Newton Based Methods (2 by 2)"):
+with st.expander("📊 View This Step By Step Worked Example Question Using Newton Based Methods (2 by 2)"):
     st.markdown(r"""
-    Using the same question setup as the SCF method of: \\
+    Using the same setup as in the SCF example, we can try solving it with Newton Based Method \\
     $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
     
-    **Step 0: The Current State**  
-    Imagine we are sitting at our initial guess vector $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. As we calculated earlier, the matrix output at this point is:
-    $$A(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$$
+    **Step 0: Checking the Mismatch**  
+    We start at our same guess: pointing straight along the X-axis: $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
     
-    The Rayleigh quotient gives us our current estimated scaling factor ($\lambda = v^T A v = 2.5$).
+    When we push this vector through the matrix, it outputs a reflection pointing at $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$. 
     
-    **Step 1: Measuring the Residual (Error)**  
-    We calculate our directional error vector $F(v_0)$ by checking how far our output misses a perfect scalar match:
-    $$F(v_0) = A(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
+    **Step 1: Measuring the Error**  
+    We compare where the reflection pointed against where we aimed. After scaling things to keep the lengths fair, we find our structural mismatch:
+    $$\text{Error Vector} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
     
-    This tells the solver that the vector has zero error along the X-axis, but a significant structural mismatch of $+1.0$ pointing along the Y-axis.
+    This tells the solver: *"Your X-coordinate is fine, but your reflection is spilling over too much on the Y-axis by a value of $+1.0$."*
     
-    **Step 2: The Newton Correction Jump**  
-    Using a step-scaling factor (like the $0.4$ multiplier used in our playground engine below), the algorithm alters the vector coordinates in the opposite direction of the error to push it downhill toward zero:
-    $$v_{\text{raw}} = v_0 - 0.4 \cdot F(v_0) = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
+    **Step 2: Actively Correcting the Course**  
+    To cancel that error out, the Newton solver takes our original position and subtracts a fraction of that error (nudging it in the opposite direction):
+    $$v_{\text{corrected}} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - 0.4 \cdot \begin{pmatrix} 0 \\ 1.0 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
     
-    Finally, we project this raw jump back onto our unit boundary circle to preserve our required scaling length ($||v||_2 = 1$):
-    $$v_1 = \frac{v_{\text{raw}}}{||v_{\text{raw}}||} \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
+    We pull this new position back onto our unit circle boundary so it stays a proper unit pointer:
+    $$v_1 \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
     
-    Notice how this single, calculated step immediately shifts the vector into the correct quadrant to find the balancing point!
+    Notice how this single, clever calculation immediately yanks the vector into the correct quadrant to find the balancing point!
     """)
 
 # =========================================================================
