@@ -100,7 +100,7 @@ with col_app2:
 # ---------------------------------------------------------
 st.markdown("---")
 st.markdown(r"""
-Algorithmic Pitfalls (The Catch)
+### Algorithmic Pitfalls (The Catch)
 Numerical optimization isn't always smooth sailing. When you dive into our calculator page, you will observe two classic pitfalls:
 """)
 
