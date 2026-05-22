@@ -89,8 +89,8 @@ st.write("Your slider positions have constructed the following custom active num
 
 st.latex(rf"""
 A(v) = \begin{{pmatrix}} 
-1.0 + {alpha}({current_v[0]:.2f})^2 & 0.5 & 0.2 \\ 
-0.5 & 0.8 + {beta}({current_v[1]:.2f})^2 & 0.3 \\ 
+1.0 + {alpha_fixed:.1f}({current_v[0]:.2f})^2 & 0.5 & 0.2 \\ 
+0.5 & 0.8 + {beta_fixed:.1f}({current_v[1]:.2f})^2 & 0.3 \\ 
 0.2 & 0.3 & 0.5 + 1.5({current_v[2]:.2f})^2
 \end{{pmatrix}} = \begin{{pmatrix}} 
 {A_curr[0,0]:.2f} & {A_curr[0,1]:.2f} & {A_curr[0,2]:.2f} \\ 
