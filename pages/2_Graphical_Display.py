@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Graphical Display", layout="wide")
 
-st.title("Graphical Interactive Playground")
+st.title("### Graphical Interactive Playground")
 st.markdown(r"""
 By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
 
