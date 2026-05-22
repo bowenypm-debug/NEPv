@@ -66,7 +66,7 @@ st.subheader("2. Strategy B: The Newton-Based Error Fixer")
 st.markdown(r"""
 SCF is simple, but it has a weakness: if the mirror warps too violently when you move, you might end up wildly bouncing back and forth forever without ever settling down.
 
-**Newton-based methods** use a smarter, more active steering strategy. Instead of just blindly stepping wherever the reflection points, it measures your **miss distance** (the error):
+**Newton-based methods** use a smarter, more active steering strategy. Instead of just blindly stepping wherever the reflection points, it measures your **miss distance** (the error): \\
 $$\text{Error} = \text{Where the mirror points your reflection} - \text{Where you are standing} = \vec{0}$$
 
 Think of it like driving a car:
