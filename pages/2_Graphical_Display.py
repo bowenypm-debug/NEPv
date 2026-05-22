@@ -18,34 +18,41 @@ When your purple vector lines up *perfectly* with any of the dashed output arrow
 # Step 2: Main Workspace - Side-by-Side Sandbox Layout
 # ---------------------------------------------------------
 st.markdown("### Interactive Graphical Playground")
-st.write("Adjust the parameters below to see the 3D space warp in real time.")
+st.write("Adjust the coordinates below to aim your probe vector in 3D space.")
 
 # Create a clean side-by-side split: Controls on Left, Graph on Right
 col_controls, col_graph = st.columns([1, 2])
 
 with col_controls:
-    st.markdown("**Nonlinearity Weights**")
-    alpha = st.slider("Weight (α)", 0.0, 4.0, 1.5, 0.1, key="sandbox_alpha")
-    beta = st.slider("Weight (β)", 0.0, 4.0, 0.5, 0.1, key="sandbox_beta")
+    st.markdown("**Aim Your Probe Vector ($v$)**")
+    # Simple, intuitive raw spatial coordinates instead of alpha/beta or angles
+    raw_x = st.slider("Position X", -1.0, 1.0, 0.5, 0.1)
+    raw_y = st.slider("Position Y", -1.0, 1.0, 0.5, 0.1)
+    raw_z = st.slider("Position Z", -1.0, 1.0, 0.7, 0.1)
     
+    # Avoid division by zero if all sliders are at 0
+    raw_vector = np.array([raw_x, raw_y, raw_z])
+    norm = np.linalg.norm(raw_vector)
+    if norm == 0:
+        current_v = np.array([1.0, 0.0, 0.0])
+    else:
+        # Normalize so it always lands perfectly on the 3D Unit Sphere
+        current_v = raw_vector / norm
+
+    st.markdown("---")
     st.markdown("**View of Diagram**")
-    theta = st.slider("Horizontal Angle", 0.0, 180.0, 45.0, 5.0)
-    phi = st.slider("Vertical Angle", 0.0, 360.0, 30.0, 5.0)
-    
-    # Calculate current state coordinates from angle sliders
-    theta_rad = np.radians(theta)
-    phi_rad = np.radians(phi)
-    current_v = np.array([
-        np.sin(theta_rad) * np.cos(phi_rad),
-        np.sin(theta_rad) * np.sin(phi_rad),
-        np.cos(theta_rad)
-    ])
+    theta = st.slider("Horizontal Camera Angle", 0.0, 180.0, 45.0, 5.0)
+    phi = st.slider("Vertical Camera Angle", 0.0, 360.0, 30.0, 5.0)
 
 with col_graph:
-    # --- Math Calculations Based on Live Sliders ---
+    # Hardcoded stable weights for alpha (1.5) and beta (0.5) to keep the NEPv math 
+    # perfectly operational underneath without confusing the user with extra sliders.
+    alpha_fixed = 1.5
+    beta_fixed = 0.5
+    
     A_curr = np.array([
-        [1.0 + alpha * (current_v[0]**2), 0.5, 0.2],
-        [0.5, 0.8 + beta * (current_v[1]**2), 0.3],
+        [1.0 + alpha_fixed * (current_v[0]**2), 0.5, 0.2],
+        [0.5, 0.8 + beta_fixed * (current_v[1]**2), 0.3],
         [0.2, 0.3, 0.5 + 1.5 * (current_v[2]**2)]
     ])
     
