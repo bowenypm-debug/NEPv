@@ -26,7 +26,7 @@ Instead of trying to handle the shifting landscape all at once, SCF simplifies t
 5. Repeat this cycle until the vector stops changing ($v_k \approx v_{k+1}$). When the input vector matches the output eigenvector, you have achieved *self-consistency*.
 """)
 
-with st.expander("📊 View Step-by-Step Worked Example Question (***$2 \times 2$***)"):
+with st.expander("📊 View Step-by-Step Worked Example Question Using SCF (2 by 2)"):
     st.markdown(r"""
     Let's look at how the SCF algorithm handles our baseline matrix problem:
     $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
