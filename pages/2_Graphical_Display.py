@@ -17,7 +17,7 @@ When your crimson vector lines up *perfectly* with any of the dashed output arro
 # ---------------------------------------------------------
 # Step 2: Main Workspace - Side-by-Side Sandbox Layout
 # ---------------------------------------------------------
-st.markdown("### 🎮 Live Configuration Sandbox")
+st.markdown("Interactive Graphical Playground")
 st.write("Adjust the parameters below to see the 3D space warp in real time.")
 
 # Create a clean side-by-side split: Controls on Left, Graph on Right
