@@ -6,43 +6,29 @@ import matplotlib.pyplot as plt
 st.set_page_config(page_title="Graphical Display", layout="wide")
 
 st.title("Graphical Interactive Playground")
-st.markdown(r"""
-By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
-
-**Your Objective:** Use the rotation sliders below to slide your purple probe vector $v$ smoothly across the 3D space. 
-Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
-When your purple vector lines up *perfectly* with any of the dashed output arrows, you have unlocked an equilibrium state of the NEPv!
-""")
 
 # ---------------------------------------------------------
-# Step 1: The Explainer - Positioned Before the Workspace
+# Step 1: The Explainer - Concept Primer at the Top
 # ---------------------------------------------------------
-st.markdown("### 🔍 The Absolute Basics: What Are These Arrows Telling Us?")
-
+st.markdown("### 🔍 The Absolute Basics: What Are We Looking At?")
 st.markdown("""
-If you are completely new to this, let's break down exactly what is happening in the 3D playground below without the technical fluff.
+Before diving into the interactive simulator below, let's establish a quick mental model of how matrices twist and stretch space without getting bogged down in dense mathematics.
 
-##### 1. What a Matrix Normally Does (The "Blender" vs. The "Stretcher")
-Normally, when you multiply a matrix by a vector, it does two things: it **rotates (twists)** the vector in a new direction, and it **scales (stretches or shrinks)** its length. It acts like a space blender.
+##### 1. The Matrix as a "Space Blender"
+Normally, when you multiply a matrix by a vector, it forces that vector to change in two ways: it **rotates (twists)** the vector into a new direction, and it **scales (stretches or shrinks)** its overall length. 
 
-However, for every matrix, there are a few special, magic directions where **zero twisting happens**. If you point a vector in one of these exact directions:
+However, every matrix has a few special, unique directions where **zero twisting happens**. If you align a vector precisely along one of these magic paths:
 * The matrix will **only stretch or shrink** the vector.
-* The vector stays perfectly on its original line.
+* The vector stays locked perfectly on its original structural line.
 
-* **The Eigenvector** (the dashed arrows) is that magic direction.
-* **The Eigenvalue** ($\lambda$) is the scaling factor—how many times longer or shorter the vector gets when pointed there.
+In linear algebra, this un-twisted direction is called an **Eigenvector** (represented by the dashed lines below), and its scaling multiplier is called an **Eigenvalue** ($\lambda$).
 
-##### 2. What Makes a "Nonlinear" Eigenvalue Problem (NEPv) Different?
-In standard linear algebra, the landscape is frozen. The magic dashed arrows are glued in place. You just have to find them.
+##### 2. What Makes a "Nonlinear" Problem Different?
+In standard textbook linear algebra, the landscape is completely frozen. The magic dashed target lines are glued permanently in place, and your only job is to calculate where they sit.
 
-But in this sandbox, we are dealing with a **Nonlinear Eigenvalue Problem (NEPv)**. This means **the landscape changes based on where you look.** 
-* The moment you move your **Probe Vector**, the entire matrix morphs (look at the numbers updating in the matrix formula below!).
-* Because the matrix morphs, the magic dashed arrows **move, twist, grow, and shrink in real time.**
-
-##### 3. How to "Win" This Simulation
-Right now, your probe vector is pointing in a direction that is being twisted by the matrix. It is *not* in an equilibrium state.
-
-Your goal is to find a sweet spot where **your input causes an output that matches itself**. Adjust the sliders below until your Crimson Probe Vector lines up *exactly* on top of one of those dashed lines!
+But in this sandbox, we are exploring a **Nonlinear Eigenvalue Problem (NEPv)**. Here, **the landscape morphs based on where you look.** 
+* The moment you alter your **Probe Vector** coordinates, the numbers inside the transformation matrix recalculate in real time.
+* Because the underlying matrix itself is constantly shifting, the target dashed lines will **bend, twist, grow, and shrink dynamically as you move.**
 """)
 
 st.markdown("---")
@@ -51,7 +37,11 @@ st.markdown("---")
 # Step 2: Main Workspace - Side-by-Side Sandbox Layout
 # ---------------------------------------------------------
 st.markdown("### Interactive Graphical Playground")
-st.write("Adjust the coordinates below to aim your probe vector in 3D space.")
+st.markdown(r"""
+**Your Objective:** Adjust the position sliders on the left to slide your Crimson Probe Vector $v$ smoothly through 3D space. 
+Watch how the green, blue, and purple target lines twist away from you. Keep tweaking your direction until your solid Crimson Vector **lines up perfectly** on top of any of the dashed output arrows. 
+When they snap into alignment, you have discovered an equilibrium state—a true solution to the Nonlinear Eigenvalue Problem!
+""")
 
 # Create a clean side-by-side split: Controls on Left, Graph on Right
 col_controls, col_graph = st.columns([1, 2])
@@ -152,7 +142,7 @@ st.markdown(f"""
 * <span style="color:#9B59B6">■</span> **Purple Target Axis:** If you can guide your probe to `[{vecs[0,2].real:.2f}, {vecs[1,2].real:.2f}, {vecs[2,2].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[2].real:.2f}**.
 """, unsafe_allow_html=True)
 
-st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
+st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can use the camera sliders to rotate your perspective view of the entire 3D space field!")
 
 # ---------------------------------------------------------
 # Page Navigation Footer
