@@ -33,7 +33,7 @@ with col_controls:
     raw_vector = np.array([raw_x, raw_y, raw_z])
     current_norm = np.linalg.norm(raw_vector)
     
-    # NEW LOGIC: Enforce a maximum magnitude of 1.0 instead of scaling everything to 1.0
+    # Enforce a maximum magnitude of 1.0 instead of scaling everything to 1.0
     if current_norm > 1.0:
         current_v = raw_vector / current_norm
         norm_v = 1.0
@@ -64,15 +64,6 @@ with col_graph:
     # Generate the 3D Plot Object
     fig = plt.figure(figsize=(5, 5))  # Shrunk size to fit neatly inline
     ax = fig.add_subplot(111, projection='3d')
-    
-    # Add a subtle translucent hull surface so the maximum boundary constraint remains visible
-    u = np.linspace(0, 2 * np.pi, 25)
-    v_mesh = np.linspace(0, np.pi, 20)
-    x_hull = np.outer(np.cos(u), np.sin(v_mesh))
-    y_hull = np.outer(np.sin(u), np.sin(v_mesh))
-    z_hull = np.outer(np.ones(np.size(u)), np.cos(v_mesh))
-    ax.plot_surface(x_hull, y_hull, z_hull, color='skyblue', alpha=0.1, linewidth=0)
-    ax.plot_wireframe(x_hull, y_hull, z_hull, color='gray', linewidth=0.3, linestyle=":", alpha=0.1)
     
     # Plot the 3 live system linear eigenvectors dynamically
     colors = ["#2ECC71", "#3498DB", "#9B59B6"] # Green, Blue, Purple
