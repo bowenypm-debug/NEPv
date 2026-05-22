@@ -10,7 +10,7 @@ st.title("Graphical Interactive Playground")
 # ---------------------------------------------------------
 # Step 1: The Explainer - Concept Primer at the Top
 # ---------------------------------------------------------
-st.markdown("### 🔍 The Absolute Basics: What Are We Looking At?")
+st.markdown("How Does It Work???")
 st.markdown("""
 Before diving into the interactive simulator below, let's establish a quick mental model of how matrices twist and stretch space without getting bogged down in dense mathematics.
 
