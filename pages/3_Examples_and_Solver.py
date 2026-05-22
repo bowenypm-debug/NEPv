@@ -42,7 +42,7 @@ Let's take an initial guess and see what happens if we guess a simple unit vecto
 # ---------------------------------------------------------
 # Step 2: Interactive Custom Matrix Input
 # ---------------------------------------------------------
-st.markdown("### 🛠️ Design Your Own Matrix Problem")
+st.markdown("Design Your Own Matrix Problem")
 st.write("Modify the base parameters below to see how your own custom NEPv configuration behaves.")
 
 col_mat_in1, col_mat_in2, col_mat_in3, col_mat_in4 = st.columns(4)
@@ -54,7 +54,7 @@ with col_mat_in2:
 with col_mat_in3:
     base_a22 = st.number_input("Base A22", value=0.5, step=0.1)
     beta = st.slider("Nonlinearity Weight (β)", 0.0, 4.0, 0.5, 0.1)
-st.markdown("##### 📐 Your Active Equation Setup:")
+st.markdown("Your Active Equation Setup:")
 st.latex(rf"""
 A(v) = \begin{{pmatrix}} 
 {base_a11} + {alpha}|v_1|^2 & {off_diag} \\ 
