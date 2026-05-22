@@ -7,10 +7,10 @@ st.set_page_config(page_title="Graphical Display", layout="wide")
 
 st.title("Graphical Interactive Playground")
 st.markdown(r"""
-By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
+By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
 
-**Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
-Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
+**Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
+Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
 When your purple vector lines up *perfectly* with any of the dashed output arrows, you have unlocked an equilibrium state of the NEPv!
 """)
 
@@ -30,20 +30,20 @@ with col_controls:
     raw_y = st.slider("Position Y", -1.0, 1.0, 0.5, 0.1)
     raw_z = st.slider("Position Z", -1.0, 1.0, 0.7, 0.1)
     
-    # Avoid division by zero if all sliders are at 0
     raw_vector = np.array([raw_x, raw_y, raw_z])
-    norm = np.linalg.norm(raw_vector)
-    if norm == 0:
-        current_v = np.array([1.0, 0.0, 0.0])
+    current_norm = np.linalg.norm(raw_vector)
+    
+    # NEW LOGIC: Enforce a maximum magnitude of 1.0 instead of scaling everything to 1.0
+    if current_norm > 1.0:
+        current_v = raw_vector / current_norm
+        norm_v = 1.0
     else:
-        # Normalize so it always lands perfectly on the 3D Unit Sphere
-        current_v = raw_vector / norm
+        current_v = raw_vector
+        norm_v = current_norm
 
     st.markdown("---")
     st.markdown("**View of Diagram**")
-    # Horizontal rotation loops all the way around space (0 to 360)
     theta = st.slider("Horizontal Camera Angle", 0.0, 360.0, 45.0, 5.0)
-    # Vertical rotation looks from top to bottom (0 to 180)
     phi = st.slider("Vertical Camera Angle", 0.0, 180.0, 30.0, 5.0)
 
 with col_graph:
@@ -65,6 +65,15 @@ with col_graph:
     fig = plt.figure(figsize=(5, 5))  # Shrunk size to fit neatly inline
     ax = fig.add_subplot(111, projection='3d')
     
+    # Add a subtle translucent hull surface so the maximum boundary constraint remains visible
+    u = np.linspace(0, 2 * np.pi, 25)
+    v_mesh = np.linspace(0, np.pi, 20)
+    x_hull = np.outer(np.cos(u), np.sin(v_mesh))
+    y_hull = np.outer(np.sin(u), np.sin(v_mesh))
+    z_hull = np.outer(np.ones(np.size(u)), np.cos(v_mesh))
+    ax.plot_surface(x_hull, y_hull, z_hull, color='skyblue', alpha=0.1, linewidth=0)
+    ax.plot_wireframe(x_hull, y_hull, z_hull, color='gray', linewidth=0.3, linestyle=":", alpha=0.1)
+    
     # Plot the 3 live system linear eigenvectors dynamically
     colors = ["#2ECC71", "#3498DB", "#9B59B6"] # Green, Blue, Purple
     for i in range(3):
@@ -74,15 +83,14 @@ with col_graph:
     
     # Plot the active probed vector arrow path
     ax.quiver(0, 0, 0, current_v[0], current_v[1], current_v[2], 
-              color="crimson", linewidth=4, label="Probe Vector v")
+              color="crimson", linewidth=4, label="Probe Vector v", arrow_length_ratio=0.1 if norm_v > 0 else 0)
     
     ax.set_xlim([-1.2, 1.2])
     ax.set_ylim([-1.2, 1.2])
     ax.set_zlim([-1.2, 1.2])
     
-    # --- FIXED: Correctly mapping vertical to elevation (phi) and horizontal to azimuth (theta) ---
+    # Correctly mapping camera perspective controls
     ax.view_init(elev=phi, azim=theta)
-    # ---------------------------------------------------------------------------------------------
     
     ax.legend(loc="upper left", bbox_to_anchor=(-0.1, 1.15), fontsize="small")
     
@@ -109,7 +117,7 @@ A(v) = \begin{{pmatrix}}
 st.markdown("##### 💡 Vector Readout Summary:")
 st.info(f"Your probe location is currently locked at coordinates:  \n* **X:** `{current_v[0]:.3f}`  \n* **Y:** `{current_v[1]:.3f}`  \n* **Z:** `{current_v[2]:.3f}`")
 
-st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can use the camera angle sliders to rotate your perspective view of the entire 3D space field!")
+st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
 
 st.markdown("### 🔍 The Absolute Basics: What Are These Arrows Telling Us?")
 
