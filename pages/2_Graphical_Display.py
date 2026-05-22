@@ -120,7 +120,7 @@ But in this sandbox, we are dealing with a **Nonlinear Eigenvalue Problem (NEPv)
 * Because the matrix morphs, the magic dashed arrows **move, twist, grow, and shrink in real time.**
 
 ##### 3. How to "Win" This Simulation
-Right now, your Crimson Probe Vector is pointing in a direction that is being twisted by the matrix. It is *not* in an equilibrium state.
+Right now, your probe vector is pointing in a direction that is being twisted by the matrix. It is *not* in an equilibrium state.
 
 Your goal is to find a sweet spot where **your input causes an output that matches itself**. Look at the live numbers right now:
 """)
@@ -132,7 +132,7 @@ st.markdown(f"""
 * <span style="color:#3498DB">■</span> **Blue Target Axis:** If you can guide your probe to `[{vecs[0,1].real:.2f}, {vecs[1,1].real:.2f}, {vecs[2,1].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[1].real:.2f}** without twisting it.
 * <span style="color:#9B59B6">■</span> **Purple Target Axis:** If you can guide your probe to `[{vecs[0,2].real:.2f}, {vecs[1,2].real:.2f}, {vecs[2,2].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[2].real:.2f}** without twisting it.
 
-**The Ultimate Goal:** Keep adjusting the sliders until your Crimson Probe Vector lines up *exactly* on top of one of those dashed lines. When it does, you have solved the NEPv!
+**The Ultimate Goal:** Keep adjusting the sliders until your Probe Vector lines up *exactly* on top of one of those dashed lines. When it does, you have solved the NEPv!
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
