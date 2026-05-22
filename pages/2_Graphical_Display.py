@@ -7,10 +7,10 @@ st.set_page_config(page_title="Graphical Display", layout="wide")
 
 st.title("Graphical Interactive Playground")
 st.markdown(r"""
-By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
+By scaling the problem up to a **$3 \times 3$ system**, our vector $v$ can travel across a **3D Unit Sphere**. 
 
-**Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
-Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
+**Your Objective:** Use the rotation sliders on the left to slide your purple probe vector $v$ smoothly across the 3D space. 
+Watch how the 3 distinct system output eigenvectors (red, blue, and green) twist, grow, and shrink in response. 
 When your purple vector lines up *perfectly* with any of the dashed output arrows, you have unlocked an equilibrium state of the NEPv!
 """)
 
@@ -77,6 +77,11 @@ with col_graph:
     ax.set_xlim([-1.2, 1.2])
     ax.set_ylim([-1.2, 1.2])
     ax.set_zlim([-1.2, 1.2])
+    
+    # --- FIXED: Re-apply the camera rotation angles from our sliders ---
+    ax.view_init(elev=theta, azim=phi)
+    # -------------------------------------------------------------------
+    
     ax.legend(loc="upper left", bbox_to_anchor=(-0.1, 1.15), fontsize="small")
     
     # Render the smaller figure in the right column
@@ -102,7 +107,7 @@ A(v) = \begin{{pmatrix}}
 st.markdown("##### 💡 Vector Readout Summary:")
 st.info(f"Your probe location is currently locked at coordinates:  \n* **X:** `{current_v[0]:.3f}`  \n* **Y:** `{current_v[1]:.3f}`  \n* **Z:** `{current_v[2]:.3f}`")
 
-st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
+st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can use the camera angle sliders to rotate your perspective view of the entire 3D space field!")
 
 st.markdown("### 🔍 The Absolute Basics: What Are These Arrows Telling Us?")
 
