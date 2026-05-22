@@ -97,18 +97,42 @@ st.info(f"Your probe location is currently locked at coordinates:  \n* **X:** `{
 
 st.write("Notice how manipulating the rotation parameters bends the output coordinate frames. You can click and drag the canvas background to rotate your perspective view of the entire 3D space field!")
 
-# ---------------------------------------------------------
-# NEW INSERTION: Educational Explainer (Leaves all outer code untouched)
-# ---------------------------------------------------------
-st.markdown("### 🔍 Mathematical Breakdown: What are these arrows?")
+st.markdown("### 🔍 The Absolute Basics: What Are These Arrows Telling Us?")
+
+st.markdown("""
+If you are completely new to this, the math jargon can look intimidating. Let's break down exactly what is happening in that 3D plot without the technical fluff.
+
+##### 1. What a Matrix Normally Does (The "Blender" vs. The "Stretcher")
+Normally, when you multiply a matrix by a vector, it does two things: it **rotates (twists)** the vector in a new direction, and it **scales (stretches or shrinks)** its length. It acts like a space blender.
+
+However, for every matrix, there are a few special, magic directions where **zero twisting happens**. If you point a vector in one of these exact directions:
+* The matrix will **only stretch or shrink** the vector.
+* The vector stays perfectly on its original line.
+
+* **The Eigenvector** (the dashed arrows) is that magic direction.
+* **The Eigenvalue** ($\lambda$) is the scaling factor—how many times longer or shorter the vector gets when pointed there.
+
+##### 2. What Makes a "Nonlinear" Eigenvalue Problem (NEPv) Different?
+In standard linear algebra, the landscape is frozen. The magic dashed arrows are glued in place. You just have to find them.
+
+But in this sandbox, we are dealing with a **Nonlinear Eigenvalue Problem (NEPv)**. This means **the landscape changes based on where you look.** 
+* The moment you move your **Crimson Probe Vector**, the entire matrix morphs (look at the numbers updating in the matrix above!).
+* Because the matrix morphs, the magic dashed arrows **move, twist, grow, and shrink in real time.**
+
+##### 3. How to "Win" This Simulation
+Right now, your Crimson Probe Vector is pointing in a direction that is being twisted by the matrix. It is *not* in an equilibrium state.
+
+Your goal is to find a sweet spot where **your input causes an output that matches itself**. Look at the live numbers right now:
+""")
+
+# Print out clear, intuitive, dynamic comparisons
 st.markdown(f"""
-Every time you move the sliders, your vector position inputs are calculated inside the matrix on the left. Because that matrix turns into a temporary set of solid static numbers, it forces open exactly **three specific directional balance axes** based on classic linear algebra:
+* **Your Input Position:** `[{current_v[0]:.2f}, {current_v[1]:.2f}, {current_v[2]:.2f}]`
+* <span style="color:#2ECC71">■</span> **Green Target Axis:** If you can guide your probe to `[{vecs[0,0].real:.2f}, {vecs[1,0].real:.2f}, {vecs[2,0].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[0].real:.2f}** without twisting it.
+* <span style="color:#3498DB">■</span> **Blue Target Axis:** If you can guide your probe to `[{vecs[0,1].real:.2f}, {vecs[1,1].real:.2f}, {vecs[2,1].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[1].real:.2f}** without twisting it.
+* <span style="color:#9B59B6">■</span> **Purple Target Axis:** If you can guide your probe to `[{vecs[0,2].real:.2f}, {vecs[1,2].real:.2f}, {vecs[2,2].real:.2f}]`, the matrix will only stretch it by a factor of **{vals[2].real:.2f}** without twisting it.
 
-* <span style="color:#2ECC71">■</span> **Eigenvector 1 (Green dashed arrow):** Target coordinates are `[{vecs[0,0].real:.3f}, {vecs[1,0].real:.3f}, {vecs[2,0].real:.3f}]` with an eigenvalue scale factor of $\lambda = {vals[0].real:.2f}$.
-* <span style="color:#3498DB">■</span> **Eigenvector 2 (Blue dashed arrow):** Target coordinates are `[{vecs[0,1].real:.3f}, {vecs[1,1].real:.3f}, {vecs[2,1].real:.3f}]` with an eigenvalue scale factor of $\lambda = {vals[1].real:.2f}$.
-* <span style="color:#9B59B6">■</span> **Eigenvector 3 (Purple dashed arrow):** Target coordinates are `[{vecs[0,2].real:.3f}, {vecs[1,2].real:.2f}, {vecs[2,2].real:.3f}]` with an eigenvalue scale factor of $\lambda = {vals[2].real:.2f}$.
-
-Right now, your **Crimson Probe Vector** is resting at coordinates `[{current_v[0]:.3f}, {current_v[1]:.3f}, {current_v[2]:.3f}]`. To solve the **NEPv**, you must nudge the sliders until your crimson vector coordinates perfectly match one of the target sets listed above!
+**The Ultimate Goal:** Keep adjusting the sliders until your Crimson Probe Vector lines up *exactly* on top of one of those dashed lines. When it does, you have solved the NEPv!
 """, unsafe_allow_html=True)
 
 # ---------------------------------------------------------
