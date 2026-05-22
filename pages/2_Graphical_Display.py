@@ -28,7 +28,6 @@ with col_controls:
     alpha = st.slider("Weight (α)", 0.0, 4.0, 1.5, 0.1, key="sandbox_alpha")
     beta = st.slider("Weight (β)", 0.0, 4.0, 0.5, 0.1, key="sandbox_beta")
     
-    st.markdown("---")
     st.markdown("**View of Diagram**")
     theta = st.slider("Horizontal Angle", 0.0, 180.0, 45.0, 5.0)
     phi = st.slider("Vertical Angle", 0.0, 360.0, 30.0, 5.0)
