@@ -45,10 +45,7 @@ with col_controls:
     phi = st.slider("Vertical Camera Angle", 0.0, 360.0, 30.0, 5.0)
 
 with col_graph:
-    # Hardcoded stable weights for alpha (1.5) and beta (0.5) to keep the NEPv math 
-    # perfectly operational underneath without confusing the user with extra sliders.
-    alpha_fixed = 1.5
-    beta_fixed = 0.5
+    ax.view_init(elev=phi, azim=theta)
     
     A_curr = np.array([
         [1.0 + alpha_fixed * (current_v[0]**2), 0.5, 0.2],
