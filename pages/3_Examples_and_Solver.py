@@ -74,7 +74,7 @@ $$v_{k+1} = v_k - \Delta v$$
 * **The Disadvantage:** Because it relies heavily on local slopes, a poor initial guess can occasionally cause the algorithm to lose its footing and jump entirely in the wrong direction.
 """)
 
-with st.expander("📊 View Step-by-Step Newton Worked Example Intuition"):
+with st.expander("📊 View Step-by-Step Worked Example Question Using Newton Based Methods (2 by 2)"):
     st.markdown(r"""
     Let's look at how a Newton approach calculates its trajectory corrections using our same base setup.
     
