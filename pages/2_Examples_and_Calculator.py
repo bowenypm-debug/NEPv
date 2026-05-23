@@ -131,13 +131,13 @@ st.write("Modify the base parameters below to see how your own custom NEPv confi
 
 col_mat_in1, col_mat_in2, col_mat_in3, col_mat_in4 = st.columns(4)
 with col_mat_in1:
-    base_a11 = st.number_input("Base A11", value=1.0, step=0.1)
-    alpha = st.slider("Nonlinearity Weight (α)", 0.0, 4.0, 1.5, 0.1)
+    base_a11 = st.number_input("Base $A_{11}$", value=1.0, step=0.1)
+    alpha = st.slider("Nonlinearity Weight 1", 0.0, 4.0, 1.5, 0.1)
 with col_mat_in2:
-    off_diag = st.number_input("Off-Diagonal (A12 & A21)", value=1.0, step=0.1)
+    off_diag = st.number_input("Off-Diagonal ($A_{12}$ & $A_{21}$)", value=1.0, step=0.1)
 with col_mat_in3:
-    base_a22 = st.number_input("Base A22", value=0.5, step=0.1)
-    beta = st.slider("Nonlinearity Weight (β)", 0.0, 4.0, 0.5, 0.1)
+    base_a22 = st.number_input("Base $A_{22}$", value=0.5, step=0.1)
+    beta = st.slider("Nonlinearity Weight 2", 0.0, 4.0, 0.5, 0.1)
 
 st.markdown("Your Active Equation Setup:")
 st.latex(rf"""
