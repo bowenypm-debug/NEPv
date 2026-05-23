@@ -29,7 +29,7 @@ with col2:
     st.markdown("### Level 2: NEP")
     st.warning("**Nonlinear in parameter $\lambda$**")
     st.markdown(r"""
-    The standard Nonlinear Eigenvalue Problem (NEP) is a problem where the matrix entries depend nonlinearly on the *eigenvalue* parameter itself. This means instead of $\lambda$ sitting outside, the entire matrix changes based on a function of $\lambda$, often written as $T(\lambda)$: 
+    The standard Nonlinear Eigenvalue Problem (NEP) is a problem where the matrix entries depend nonlinearly on the *eigenvalue* parameter itself. This means instead of $\lambda$ having no effect, the entire matrix changes based on a function of $\lambda$, often written as $T(\lambda)$: 
     $$T(\lambda)v = 0$$
     """)
 
@@ -37,9 +37,9 @@ with col3:
     st.markdown("### Level 3: NEPv")
     st.success("**Nonlinear in parameter $\lambda$ and vector $v$**")
     st.markdown(r"""
-    In an **NEPv**, the matrix entries depend on both the eigenvector $v$ and the eigenvalue $\lambda$ with a common form of: 
+    In an **NEPv**, the matrix entries depend directly on the *eigenvector* $v$ itself. It uses the form: 
     $$A(v)v = \lambda v$$
-    When either eigenvector $v$ changes and/or eigenvalue $\lambda$changes, the entire matrix $A(v)$ changes. This is what we want to look at!
+    Every time the direction or coordinates of the vector $v$ alter, the values inside the entire matrix $A(v)$ change completely. This is what we want to look at!
     """)
 
 # What is NEPv and how to solve
