@@ -47,18 +47,16 @@ st.markdown("---")
 st.markdown(r"""
 ## What does an NEPv actually do?
 
-In a traditional math problem, you are given a static matrix with set numbers, and your only job is to find the special vectors that fit it. 
+In a traditional eigenproblem, you are given a specific matrix with set numbers, and your only job is to find the eigenvectors that correspond to it. 
 
 An **NEPv** works completely differently because **the vector you choose actually fills in the numbers of the matrix**. Because the matrix $A(v)$ changes its values depending on the vector $v$ you insert, finding a solution requires achieving a balanced state of **self-consistency**. 
 
-You can think of this process as a continuous feedback loop:
-1. You feed a starting direction vector into the system.
+You can think of this process as a continuous loop:
+1. You plug in an initial guess vector into the system.
 2. The matrix updates its internal numbers based on that vector's coordinates.
-3. The matrix then outputs a brand-new directional arrow.
+3. The matrix then outputs a brand new vector.
 
-If that new output arrow points in the **exact same direction** as the vector you originally put in, the feedback loop balances out, and you have successfully found a solution!
-
-This framework is highly critical in advanced computational fields, such as tracking moving electron clouds in quantum chemistry or isolating interconnected data groups in machine learning.
+If that new output arrow points in the **exact same direction** as the vector you originally put in, the loop balances out, and you have successfully found a solution!
 """)
 
 # Page navigation
