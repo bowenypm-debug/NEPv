@@ -55,6 +55,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     
     **Iteration 2: Repeating the Process**  
     Now we simply repeat the process but using our new vector coordinates ($x_1 = 0.943, x_2 = 0.332$) and throw them back into the matrix formula to get our matrix $H(x_1)$:
+    
     $$H(x_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
     Computing the dominant standard eigenvector for this updated matrix gives us our next trajectory coordinate:
