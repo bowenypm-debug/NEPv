@@ -114,7 +114,10 @@ with st.expander("📊 View this step by step worked example question using Newt
     $$v_1 = v_0 - 0.4 \cdot \text{Error} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
     
     Finally, because a valid eigenvector must be a normalized unit vector, we calculate the normalized version of $v_1$:
-    $$v_1 = \frac{v_{\text{raw}}}{||v_{\text{raw}}||} \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
+    
+    $$\sqrt{1^2 + (-0.4)^2} = 1.077 \text{and so} x_1 = \frac{1}{1.077} = 0.928, y_1 = \frac{-0.4}{1.077} = -0.371$$
+    
+    $$v_1 \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
     
     Notice how this structured algebraic step immediately shifts the vector coordinates toward the correct quadrant to resolve the mismatch!
     """)
