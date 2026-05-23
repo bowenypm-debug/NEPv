@@ -37,8 +37,8 @@ with st.expander("📊 View this step by step worked example question using SCF 
     
     $$\begin{pmatrix} 1.0 + 1.5|x_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|x_2|^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
     
-    **Step 0: Choose an Initial Guess**  
-    We select a simple starting unit vector pointing along the X-axis: 
+    **Choose an Initial Guess**  
+    First thing we need to do is to select a simple starting unit vector pointing along the X-axis: 
     $$x_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
     **Iteration 1: Plugging the Guess in**  
