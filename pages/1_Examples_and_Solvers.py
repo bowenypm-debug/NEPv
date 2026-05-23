@@ -252,7 +252,7 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
-    st.write("Page 2 of 2")
+    st.write("Page 2 of 3")
 
 with col_footer2:
     if st.button("➡️ Applications and Pitfalls", use_container_width=True):
