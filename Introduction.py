@@ -94,7 +94,7 @@ with col_app2:
 st.markdown("---")
 st.markdown(r"""
 ### Algorithmic Pitfalls (The Catch)
-Solving nonlinear math problems isn't always smooth sailing. When you dive into our calculator page, you will get to see two classic pitfalls firsthand:
+Solving nonlinear math problems isn't always simple and straightforward. When solving an NEPv problem, there are two main pitfalls:
 """)
 
 col_pit1, col_pit2 = st.columns(2)
