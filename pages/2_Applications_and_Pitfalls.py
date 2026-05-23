@@ -34,17 +34,17 @@ col_pit1, col_pit2 = st.columns(2)
 with col_pit1:
     st.error("Infinite Oscillations")
     st.markdown(r"""
-    If the numbers in the problem are too large or have a huge different between them, the possibility of overcorrecting is very high. 
+    If the numbers in the problem are too large or have a huge difference between them, the possibility of overcorrecting is very high. 
     
-    Instead of settling down to a single answer, the **SCF solver** gets stuck on a mathematical seesaw—violently slamming back and forth between two different positions forever without ever finding a balance point.
+    Instead of converging into a single answer, the **SCF loops** can get stuck going back and forth between two different positions forever without ever finding a balance point.
     """)
 
 with col_pit2:
-    st.error("Guess Sensitivity")
-    st.markdown("""
-    Because nonlinear problems create complex landscapes with many different valleys, your starting point matters immensely. 
+    st.error("Initial Guess Distance")
+    st.markdown(r"""
+    Because the SCF and Newton based method rely on looping while getting slightly closer on every loop, where you decide to start your initial guess matters a lot. 
     
-    Changing your initial vector guess ($v_0$) by just a tiny hair can cause the computer to slide into a completely different balance point—or miss all of them entirely. Finding a good starting guess is often half the battle!
+    If you pick a starting point that is super far away from a true solution, the algorithms would have to travel a massive distance to get to the true solution. As a result, the calculations ca take an excessive number of iterations to find the target.
     """)
     
 # Page navigation
