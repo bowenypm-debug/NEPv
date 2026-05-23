@@ -28,7 +28,7 @@ The **Self-Consistent Field (SCF)** method solves this by turning the nonlinear 
 4. **Update your next guess** ($v_1$) to be the resulting eigenvector.
 5. **Repeat the loop** until the vector that we plug into the matrix formula and the resulting eigenvector is exactly the same meaning $v_k = v_{k+1}$.
 
-When the input vector and the output eigenvector matches up, the system has achieved "self consistency", meaning you have successfully found a true solution to the nonlinear equation.
+When the input vector and the output eigenvector matches up, the system has achieved "self consistency" meaning a true solution to the nonlinear equation has been found.
 """)
 
 with st.expander("📊 View this step by step worked example question using SCF (2 by 2)"):
