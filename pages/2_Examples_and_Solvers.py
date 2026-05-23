@@ -11,9 +11,7 @@ Before we map out these problems visually, let's explore how we actually solve N
 Because any valid solution vector must satisfy the normalization constraint $||v||_2 = 1$, all steady-state solutions live precisely on the boundary of a unit circle.
 """)
 
-# =========================================================================
-# 1. SCF Section
-# =========================================================================
+# SCF part
 st.subheader("Method 1: Self-Consistent Field (SCF)")
 st.markdown(r"""
 In a standard linear eigenvalue problem, you solve $Av = \lambda v$ where the matrix $A$ is a static constant. In a Nonlinear Eigenvalue Problem (NEPv), the matrix entries change depending on the vector $v$ you plug into it. This is commonly written in the mathematical form:
@@ -31,6 +29,7 @@ The **Self-Consistent Field (SCF)** method solves this by turning the nonlinear 
 When the input vector and the output eigenvector matches up, the system has achieved "self consistency" meaning a true solution to the nonlinear equation has been found.
 """)
 
+# SCF example
 with st.expander("📊 View this step by step worked example question using SCF (2 by 2)"):
     st.markdown(r"""
     Let's look at an example question with the form $H(x)x = \lambda x$:
@@ -71,9 +70,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
 
 st.markdown("---")
 
-# =========================================================================
-# 2. Newton Section
-# =========================================================================
+# Newton prat
 st.subheader("Method 2: Newton-Based Methods")
 st.markdown(r"""
 In SCF, we update the vector setp by step by comparing an old eigenvector to a new eigenvector but in the Newton based method, instead of updating the vector, we instead find the difference between the true solution and the guessed solution and minimize this difference.
@@ -87,6 +84,7 @@ If our vector is an exact solution, the "error" vector should equal exactly $\ve
 Newton's method calculates exactly how changing our coordinates will minimize the error, and then takes a calculated step to subtract that error from our current location:
 $$v_{k+1} = v_k - \Delta v$$""")
 
+# Newton example
 with st.expander("📊 View this step by step worked example question using Newton based method (2 by 2)"):
     st.markdown(r"""
     Lets use the same setup as in the SCF example but using Newton based method this time:
@@ -125,9 +123,7 @@ with st.expander("📊 View this step by step worked example question using Newt
     Like SCF, we then simply repeat the process until we get an error vector as close to 0 as possible or exactly 0 if possible
     """)
 
-# =========================================================================
-# 3. Interactive Custom Matrix Input
-# =========================================================================
+# custom question designer
 st.markdown("---")
 st.markdown("### 🛠️ Design Your Own Matrix Problem")
 st.write("Modify the base parameters below to see how your own custom NEPv configuration behaves.")
@@ -150,7 +146,7 @@ A(v) = \begin{{pmatrix}}
 \end{{pmatrix}}
 """)
 
-# Core Math Functions using Custom User Variables
+# Math functions using custom user Variables
 def get_custom_A(v):
     norm = np.linalg.norm(v)
     v_norm = v / norm if norm > 0 else np.array([1.0, 0.0])
@@ -193,9 +189,7 @@ def run_newton(v_start, max_iter=15):
         v = v_next
     return np.array(path)
 
-# =========================================================================
-# 4. Trajectory Simulation Display
-# =========================================================================
+# Graph of calculators
 st.markdown("---")
 st.markdown("### NEPv Calculators")
 
@@ -253,9 +247,7 @@ with col2:
     # Render figure directly onto your webpage layout canvas
     st.pyplot(fig_map)
 
-# ---------------------------------------------------------
-# Page Navigation Footer
-# ---------------------------------------------------------
+# Page navigation
 st.markdown("---")
 col_footer1, col_footer2 = st.columns([3, 1])
 
