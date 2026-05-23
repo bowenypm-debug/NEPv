@@ -4,7 +4,7 @@ import streamlit as st
 st.markdown("## Real-World Applications: Where is this used?")
 st.write(
     "Because the math formula updates itself as the vector moves, "
-    "the NEPv framework is the secret engine behind some incredible modern breakthroughs:"
+    "the NEPv framework is the solutions to some incredible scientific and tecnological problems:"
 )
 
 col_app1, col_app2 = st.columns(2)
