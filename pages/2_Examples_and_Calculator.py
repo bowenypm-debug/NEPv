@@ -26,7 +26,7 @@ The **Self-Consistent Field (SCF)** method solves this by turning the nonlinear 
 2. **Plug your guess into the formula** to calculate a fixed, standard matrix: $H(v_0)$.
 3. **Compute the traditional eigenvectors** of this fixed matrix.
 4. **Update your next guess** ($v_1$) to be the resulting eigenvector.
-5. **Repeat the loop** until the vector that we plug into the matrix formula and the resulting eigenvector is exactly the same meaning $v_k \approx v_{k+1}$.
+5. **Repeat the loop** until the vector that we plug into the matrix formula and the resulting eigenvector is exactly the same meaning $v_k = v_{k+1}$.
 
 When the input vector and the output eigenvector perfectly match, the system has achieved *self-consistency*, meaning you have successfully isolated a true solution to the nonlinear equation.
 """)
