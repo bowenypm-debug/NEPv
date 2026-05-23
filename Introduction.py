@@ -120,8 +120,8 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
-    st.write("Page 3 of 3")
+    st.write("Page 1 of 3")
 
 with col_footer2:
-    if st.button("↩️ Introduction", use_container_width=True):
-        st.switch_page("Introduction.py")
+    if st.button("➡️ Solving Problems", use_container_width=True):
+        st.switch_page("1_Examples_and_Solvers.py")
