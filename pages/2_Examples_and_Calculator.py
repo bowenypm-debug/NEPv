@@ -257,8 +257,8 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
-    st.write("Page 2 of 3")
+    st.write("Page 2 of 2")
 
 with col_footer2:
-    if st.button("➡️ Graphical Visualizer", use_container_width=True):
-        st.switch_page("3_Graphical_Sandbox.py")
+    if st.button("➡️ Introduction", use_container_width=True):
+        st.switch_page("Introduction.py")
