@@ -20,9 +20,9 @@ with col1:
     st.markdown("### Level 1: Traditional")
     st.info("**Linear Eigenproblem**")
     st.markdown(r"""
-    In a standard linear algebra course, you work with a constant, rigid matrix $A$. You look for a scalar $\lambda$ and a non-zero vector $v$ such that:
+    In a traditional eigenproblem, we look at a specific, fixed matrix $A$. You look for a scalar $\lambda$ known as the eigenvalue and a non zero vector $v$ corresponding to the scalar $\lambda$ known as the eigenvector such that:
     $$Av = \lambda v$$
-    The matrix $A$ never changes; it acts as a fixed linear transformation on space.
+    The matrix $A$ will never change in this case. It acts as a fixed linear transformation on the vector space.
     """)
 
 with col2:
