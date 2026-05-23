@@ -10,8 +10,8 @@ This platform allows users to manipulate nonlinear matrix parameters in a 2x2 co
 
 ### 1. Clone the Repository
 Open your terminal and run the following commands:
-git clone https://github.com/your-username/nepv-learning-suite.git
-cd nepv-learning-suite
+git clone https://github.com/bowenypm-debug/NEPv
+cd NEPv
 
 ### 2. Install Dependencies
 Make sure you have Python installed, then install the required mathematical and web-framework libraries using pip:
