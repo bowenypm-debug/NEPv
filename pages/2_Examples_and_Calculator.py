@@ -76,7 +76,8 @@ st.markdown(r"""
 In SCF, we update the vector setp by step by comparing an old eigenvector to a new eigenvector but in the Newton based method, instead of updating the vector, we instead find the difference between the true solution and the guessed solution and minimise this difference.
 
 Using our common form $H(v)v = \lambda v$, if we group everything on one side, we can define an "error" vector that tracks how far away our current guess is from a true solution:
-$$\text{Residual} = H(v)v - \lambda v$$
+
+$$\text{Error} = H(v)v - \lambda v$$
 
 If our vector is an exact solution, the "error" vector should equal exactly $\vec{0}$. 
 
