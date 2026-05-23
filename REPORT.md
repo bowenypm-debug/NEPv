@@ -2,7 +2,7 @@
 
 ---
 
-## 📋 Problem Statement
+## Problem Statement
 
 Traditional linear eigenvalue problems seek a scalar lambda and a non-zero vector v such that Av = lambda * v, where the matrix A is constant. However, in many real-world systems—such as electronic structure calculations in quantum chemistry (e.g., Self-Consistent Field equations) and advanced machine learning data clustering—the matrix itself changes depending on its own eigenvectors. This is a Nonlinear Eigenvalue Problem with Eigenvector Dependency (NEPv), mathematically stated as:
 
@@ -12,7 +12,7 @@ Because the operator A(v) changes dynamically with the state vector v, tradition
 
 ---
 
-## 🛠️ Methodology
+## Methodology
 
 The platform implements a comparative framework between two foundational numerical strategies used to resolve the self-consistency loop:
 
@@ -30,7 +30,7 @@ Rather than solving a sequence of linear problems, the Newton-based approach re-
 
 ---
 
-## 🧪 Evaluation Methods & Dataset
+## Evaluation Methods & Dataset
 
 ### Evaluation Methods
 The algorithms are evaluated dynamically based on two core criteria:
@@ -44,7 +44,7 @@ Because NEPv behavior depends entirely on the formulation of the nonlinearity, t
 
 ---
 
-## 📊 Experimental Results
+## Experimental Results
 
 Through running simulations across varying degrees of nonlinearity weights (alpha, beta), two distinct behavioral archetypes were recorded:
 
@@ -55,23 +55,22 @@ Through running simulations across varying degrees of nonlinearity weights (alph
 
 ---
 
-## 🤖 AI Collaboration & Verification Statement
+##  AI Collaboration & Verification Statement
 
 This project was built with assistance from AI (Gemini in particular) to fact check if everything said in the website is correct, to polish application UI and helped in debugging.
 
 ### What the AI Assisted With:
-*   Refining copy across all screens to balance mathematical accuracy with clear, accessible educational language.
-*   Formatting, formatting safety protections, and compilation of this Markdown project report.
+* Structuring the interactive web framework and page navigation mechanics via Streamlit.
+* Refining copy across all three pages to eliminate dense academic jargon and simplify explanations of the "self-consistency loop."
+* Assisting with the formatting and compilation of this README documentation.
 
 ### What Was Independently Verified By Hand & Code:
-*   Mathematical Core: The custom algebraic setups, matrix definitions, and 2x2 nonlinear equations were structured and calculated manually before deployment.
-*   Solver Algorithm Validation: The implementation logic for the Self-Consistent Field loop and the Newton based method was written and tested step-by-step using a script to ensure the Scipy/Numpy calculations lined up exactly with the calculations done by hand.
-*   Trajectory & Error Testing: The specific threshold boundary limits (such as the 15-iteration cutoff limit and the vector orientation dot product verification layer) were intentionally code-tested to accurately model and simulate structural pitfalls without application crashing.
+* **Mathematical Core:** The custom algebraic setups, matrix definitions, and $2 \times 2$ nonlinear equations were structured and calculated manually before deployment.
+* **Solver Algorithm Validation:** The implementation logic for the Self-Consistent Field loop and the Newton based method was written and tested step-by-step using a script to ensure the Scipy/Numpy calculations lined up exactly with the calculations done by hand.
+* **Trajectory & Error Testing:** The specific threshold boundary limits (such as the 15-iteration cutoff limit and the vector orientation dot product verification layer) were intentionally code-tested to accurately model and simulate structural pitfalls without application crashing.
 
 ---
 
-## 📚 References
-
-Streamlit. (n.d.). *Streamlit cheat sheet*. Retrieved May 20, 2026, from https://docs.streamlit.io/develop/quick-reference/cheat-sheet
-
-Werner, T. (2025). An inexact Matrix-Newton method for solving NEPv. *Linear Algebra and its Applications*, 721, 1-25. https://doi.org/10.1016/j.laa.2024.11.003
+## References
+* Werner, T. (2025). An inexact Matrix-Newton method for solving NEPv. *Linear Algebra and its Applications*, 721, 1-25. https://doi.org/10.1016/j.laa.2024.11.003
+* Streamlit. (n.d.). *Streamlit cheat sheet*. Retrieved May 20, 2026, from https://docs.streamlit.io/develop/quick-reference/cheat-sheet
