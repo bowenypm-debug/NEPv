@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Examples and Solvers", layout="wide")
 
-st.title("Part 2: Algebraic Solvers & Examples")
+st.title("Solving Problems With Examples")
 st.markdown("""
 Before we map out these problems visually, let's explore how we actually solve Nonlinear Eigenvalue Problem (NEPv) algebraically. 
 Because any valid solution vector must satisfy the normalization constraint $||v||_2 = 1$, all steady-state solutions live precisely on the boundary of a unit circle.
