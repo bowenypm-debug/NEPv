@@ -1,4 +1,4 @@
-# 🧮 Interactive NEPv Learning Suite & Solver
+#  Interactive NEPv Learning Suite & Solver
 
 An interactive 3-page web application built with Streamlit to demonstrate the mechanics, geometry, and algorithms used to solve Nonlinear Eigenvalue Problems with Eigenvector Dependency (NEPv). 
 
@@ -6,7 +6,7 @@ This platform allows users to manipulate nonlinear matrix parameters in a 2x2 co
 
 ---
 
-## 🚀 Getting Started & Installation
+##  Getting Started & Installation
 
 ### 1. Clone the Repository
 Open your terminal and run the following commands:
@@ -23,7 +23,7 @@ streamlit run Introduction.py
 
 ---
 
-## 🎨 Design Choices & App Flow
+##  Design Choices & App Flow
 
 To prevent textbook fatigue and build genuine student intuition, the application is divided into a clear, 3-page narrative arc:
 
@@ -42,7 +42,7 @@ To prevent textbook fatigue and build genuine student intuition, the application
 
 ---
 
-## ⚠️ Limitations
+##  Limitations
 
 This software application is built strictly as a visual learning environment. Take note of the following limitations:
 
@@ -50,3 +50,25 @@ This software application is built strictly as a visual learning environment. Ta
 * Fixed Newton Step Size (0.4): The Newton-based method utilizes a rigid, non-adaptive step size of 0.4. It lacks an advanced line-search fallback to alter its travel path automatically.
 * Vector Sign Flipping Constraint: Because standard eigenvalue solvers can output equivalent solutions pointing 180 degrees apart, the trajectory loop uses a dot product layer to keep direction orientation consistency on the graph.
 * Iteration Cap (15 Steps): The solver loops terminate automatically at 15 iterations. Pushing nonlinearity weights too high will reliably trigger the "Infinite Oscillation" pitfall for the SCF method.
+
+---
+
+##  AI Collaboration & Verification Statement
+
+This project was built with assistance from AI (Gemini in particular) to fact check if everything said in the website is correct, to polish application UI and helped in debugging.
+
+### What the AI Assisted With:
+* Structuring the interactive web framework and page navigation mechanics via Streamlit.
+* Refining copy across all three pages to eliminate dense academic jargon and simplify explanations of the "self-consistency loop."
+* Assisting with the formatting and compilation of this README documentation.
+
+### What Was Independently Verified By Hand & Code:
+* **Mathematical Core:** The custom algebraic setups, matrix definitions, and $2 \times 2$ nonlinear equations were structured and calculated manually before deployment.
+* **Solver Algorithm Validation:** The implementation logic for the Self-Consistent Field loop and the Newton based method was written and tested step-by-step using a script to ensure the Scipy/Numpy calculations lined up exactly with the calculations done by hand.
+* **Trajectory & Error Testing:** The specific threshold boundary limits (such as the 15-iteration cutoff limit and the vector orientation dot product verification layer) were intentionally code-tested to accurately model and simulate structural pitfalls without application crashing.
+
+---
+
+## References
+* Werner, T. (2025). An inexact Matrix-Newton method for solving NEPv. *Linear Algebra and its Applications*, 721, 1-25. https://doi.org/10.1016/j.laa.2024.11.003
+* Streamlit. (n.d.). *Streamlit cheat sheet*. Retrieved May 20, 2026, from https://docs.streamlit.io/develop/quick-reference/cheat-sheet
