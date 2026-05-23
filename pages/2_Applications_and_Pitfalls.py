@@ -46,15 +46,13 @@ with col_pit2:
     Changing your initial vector guess ($v_0$) by just a tiny hair can cause the computer to slide into a completely different balance point—or miss all of them entirely. Finding a good starting guess is often half the battle!
     """)
     
-# ---------------------------------------------------------
-# Page Navigation Footer
-# ---------------------------------------------------------
+# Page navigation
 st.markdown("---")
-col_footer1, col_footer2 = st.columns([2, 1])
+col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
-    st.write("Page 1 of 2")
+    st.write("Page 2 of 2")
 
 with col_footer2:
-    if st.button("➡️ Next: Solving Problems"):
-        st.switch_page("pages/2_Examples_and_Solvers.py")
+    if st.button("↩️ Introduction", use_container_width=True):
+        st.switch_page("Introduction.py")
