@@ -4,7 +4,7 @@ import streamlit as st
 st.markdown("## Real-World Applications: Where is this used?")
 st.write(
     "Because the math formula updates itself as the vector moves, "
-    "the NEPv framework is the solutions to some incredible scientific and tecnological problems:"
+    "the NEPv framework is the key to solving some incredible scientific and technological problems:"
 )
 
 col_app1, col_app2 = st.columns(2)
@@ -12,18 +12,19 @@ col_app1, col_app2 = st.columns(2)
 with col_app1:
     st.markdown("### 🧪 Quantum Chemistry & Finding Electrons")
     st.markdown(r"""
-    When scientists simulate chemical molecules, they need to figure out where electrons are flying. The tricky part is that the electrical forces pushing the electrons around depend entirely on where the electron cloud (our vector $v$) currently sits. 
+    When scientists simulate chemical molecules, they need to figure out where electrons are flying. The problem they previously had is that the electrical forces pushing the electrons around depend entirely on where the electron cloud (our vector $v$) currently sits. 
     
-    Because the forces shift every time an electron moves, scientists use NEPv math to find a perfect balance point. Once the formulas and the electron cloud find harmony, it reveals exactly how stable a chemical or material will be in real life.
+    Because the forces shift every time an electron moves, scientists use the NEPv format to find a perfect balance point. Once the formulas and the electron cloud match up exactly the same, it reveals exactly how stable a chemical or material will be in real life.
     """)
 
 with col_app2:
-    st.markdown("### 💻 AI & Grouping Complicated Data")
+    st.markdown("### 💻 AI & Clustering Data")
     st.markdown(r"""
-    In machine learning, computers constantly try to sort messy data into distinct groups (like identifying communities in a massive social network or objects in a photo). Traditional math tools can only draw straight lines, which easily fail when data groups are twisted or tangled together. 
+    In machine learning, computers constantly try to sort complicated data into groups. Traditional math tools can only draw straight lines, which easily fail when data groups are twisted or tangled together. 
     
-    By using an NEPv framework, the sorting rules automatically warp and bend based on how the data is being grouped. This allows the computer to untangle and isolate complex, interwoven communities that standard math solvers completely miss.
+    By portraying this data as an NEPv framework, the sorting rules automatically warp and bend based on how the data is being grouped which allows the computer to untangle and isolate complex groups of data that standard math methods completely miss.
     """)
+
 # Pitfalls
 st.markdown("---")
 st.markdown(r"""
