@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 st.set_page_config(page_title="Example and Calculator", layout="wide")
 
-st.title("Part 3: Examples and Calculator")
+st.title("Examples and Calculator")
 st.markdown("""
 Now that you have discovered solutions *graphically*, let's watch how computers find them *algebraically*. 
 Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a **Unit Circle**. 
