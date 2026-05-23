@@ -42,18 +42,24 @@ with col3:
     Every time the direction or coordinates of the vector $v$ changes, the values inside the entire matrix $A(v)$ change completely. This is what we want to look at!
     """)
 
-# What is NEPv and how to solve
+# What is NEPv
 st.markdown("---")
 st.markdown(r"""
 ## What does an NEPv actually do?
 
-In a traditional math problem, finding an eigenvector is like following a fixed trail on a map—the trail stays exactly where it is while you walk on it. 
+In a traditional math problem, you are given a static matrix with set numbers, and your only job is to find the special vectors that fit it. 
 
-In an **NEPv**, it is like trying to find a path through deep sand or snow where **your footsteps actively alter the ground beneath you**. Because the matrix $A(v)$ alters its values depending on the vector $v$ you insert, computing a final answer requires finding a balanced state of **self-consistency**. 
+An **NEPv** works completely differently because **the vector you choose actually fills in the numbers of the matrix**. Because the matrix $A(v)$ changes its values depending on the vector $v$ you insert, finding a solution requires achieving a balanced state of **self-consistency**. 
 
-Think of it as a perfect feedback loop: you feed a vector into the matrix formula, the matrix updates its numbers based on that vector, and then outputs a directional arrow that points in that exact same direction. 
+You can think of this process as a continuous feedback loop:
+1. You feed a starting direction vector into the system.
+2. The matrix updates its internal numbers based on that vector's coordinates.
+3. The matrix then outputs a brand-new directional arrow.
 
-This framework is highly critical in advanced computational sciences, such as tracking electron clouds in quantum chemistry or isolating interconnected data groups in machine learning.""")
+If that new output arrow points in the **exact same direction** as the vector you originally put in, the feedback loop balances out, and you have successfully found a solution!
+
+This framework is highly critical in advanced computational fields, such as tracking moving electron clouds in quantum chemistry or isolating interconnected data groups in machine learning.
+""")
 
 # Page navigation
 st.markdown("---")
