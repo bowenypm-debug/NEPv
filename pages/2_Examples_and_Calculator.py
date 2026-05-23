@@ -194,7 +194,7 @@ def run_newton(v_start, max_iter=15):
 # 4. Trajectory Simulation Display
 # =========================================================================
 st.markdown("---")
-st.markdown("NEPv Calculators")
+st.markdown("### NEPv Calculators")
 
 col1, col2 = st.columns([1, 2])
 
@@ -217,7 +217,7 @@ with col1:
     if len(scf_trajectory) > 14:
         st.error("⚠️ **Solver Pitfall:** SCF is stuck oscillating endlessly! The landscape is warping too aggressively for it to balance.")
     else:
-        st.success("✅ Solvers successfully isolated a steady-state solution.")
+        st.success("✅ Solvers successfully calculated non oscillating solution.")
         st.write(f"**Final Calculated Vector:** `[{scf_trajectory[-1][0]:.3f}, {scf_trajectory[-1][1]:.3f}]`")
 
 with col2:
