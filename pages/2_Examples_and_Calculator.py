@@ -82,7 +82,7 @@ $$\text{Error} = H(v)v - \lambda v$$
 If our vector is an exact solution, the "error" vector should equal exactly $\vec{0}$. 
 
 Newton's method calculates exactly how changing our coordinates will minimize the error, and then takes a calculated step to subtract that error from our current location:
-$$v_{k+1} = v_k - \Delta v$$
+$$v_{k+1} = v_k - \Delta v$$)
 
 with st.expander("📊 View this step by step worked example question using Newton based method (2 by 2)"):
     st.markdown(r"""
