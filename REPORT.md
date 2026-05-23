@@ -4,11 +4,11 @@
 
 ## Problem Statement
 
-Traditional linear eigenvalue problems seek a scalar lambda and a non-zero vector v such that Av = lambda * v, where the matrix A is constant. However, in many real-world systems—such as electronic structure calculations in quantum chemistry (e.g., Self-Consistent Field equations) and advanced machine learning data clustering—the matrix itself changes depending on its own eigenvectors. This is a Nonlinear Eigenvalue Problem with Eigenvector Dependency (NEPv), mathematically stated as:
+Traditional linear eigenvalue problems look for a scalar lambda and a non-zero vector v such that Av = lambda * v, where the matrix A is constant. However, in many real-world systems such as quantum chemistry and machine learning data  the matrix is not static and isntead itself changes depending on its own eigenvectors. This is a Nonlinear Eigenvalue Problem with Eigenvector Dependency (NEPv), mathematically stated as:
 
 A(v)v = lambda * v
 
-Because the operator A(v) changes dynamically with the state vector v, traditional direct linear algebra methods (like standard QR algorithms) cannot solve it directly. The system requires iterative numerical solvers. This project implements a computational simulator to analyze the convergence behaviors, stability boundaries, and common failure states of these solvers within a controlled two-dimensional (2x2) coordinate matrix landscape.
+Because the operator A(v) changes dynamically with the state vector v, traditional direct linear algebra methods cannot solve it directly. The system requires iterative numerical solvers. This project implements a computational simulator to analyze the convergence behaviors, stability boundaries, and common failure states of these solvers within a controlled two-dimensional (2x2) coordinate matrix landscape.
 
 ---
 
@@ -30,17 +30,13 @@ Rather than solving a sequence of linear problems, the Newton-based approach re-
 
 ---
 
-## Evaluation Methods & Dataset
+## Evaluation Methods
+The foundational evaluation method for this computational tool relies on algorithmic verification via strict mathematical benchmarking. The code’s numerical and operational accuracy was evaluated by direct comparison with answers from AI and when solved by hand:
 
-### Evaluation Methods
-The algorithms are evaluated dynamically based on two core criteria:
-1.  Geometric Trajectory mapping: Tracking the step-by-step spatial coordinates of v_k projected onto a dashed Unit Circle Boundary to observe geometric convergence paths.
-2.  Convergence Rate Analysis: Monitoring how quickly the residual system error approaches zero within a strict computational budget ceiling of 15 iterations.
+1.  **Hand-Calculated Analytical Benchmarks:** Closed-form solutions derived manually on paper serve as the absolute baseline ground truth for specific fixed matrix configurations under minor nonlinearity scaling.
+2.  **Programmatic Value Tracking:** The real-time values, eigenvectors, and eigenvalues produced dynamically by the internal Numpy and Scipy calculator engines are monitored and compared with hand written values.
 
-### Evaluation Dataset (Custom Parameter Environment)
-Because NEPv behavior depends entirely on the formulation of the nonlinearity, the software generates a real-time synthetic environment driven by user-controlled variables. The dynamic matrix template is configured as:
-*   A base symmetric linear matrix kernel.
-*   Two independent nonlinearity scaling weights (alpha and beta) that control how aggressively the state vector v twists and scales the matrix operator A(v) during runtime loops.
+The application’s computational routines are evaluated as successful only if the iterative solver tracking sequences and terminal convergence outputs achieve an exact numeric match with these manually calculated structural outcomes.
 
 ---
 
