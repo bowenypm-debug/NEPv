@@ -39,12 +39,10 @@ with col3:
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend on both the eigenvector $v$ and the eigenvalue $\lambda$ with a common form of: 
     $$A(v)v = \lambda v$$
-    When either eigenvector $v$ changes and/or eigenvalue $\lambda$changes, the entire matrix $A(x)$ changes. This is what we want to look at!
+    When either eigenvector $v$ changes and/or eigenvalue $\lambda$changes, the entire matrix $A(v)$ changes. This is what we want to look at!
     """)
 
-# ---------------------------------------------------------
-# What is an NEPv & How do we solve it?
-# ---------------------------------------------------------
+# What is NEPv and how to solve
 st.markdown("---")
 st.markdown(r"""
 ## What does an NEPv actually do?
@@ -69,9 +67,7 @@ On this website, you will explore two primary ways computers do this:
 2. **Newton-Based Methods (The Smart Correction):** Instead of just blindly calculating a new arrow at every step, this method measures the exact **error** between your current guess and a true solution. It then makes smart, calculated adjustments to subtract that error away, steering the vector directly toward a balanced target.
 """)
 
-# ---------------------------------------------------------
-# Real-World Applications
-# ---------------------------------------------------------
+# Real world uses
 st.markdown("---")
 st.markdown("## Real-World Applications: Where is this used?")
 st.write("Because the matrix transformation updates itself dynamically based on the state vector, the NEPv framework is the underlying math engine for several breakthroughs:")
@@ -94,9 +90,7 @@ with col_app2:
     By introducing nonlinear constraint matrices that change dynamically based on the partitioning vector, spectral clustering algorithms can isolate intricate, interleaved data communities that traditional standard eigen-solvers pass right through.
     """)
 
-# ---------------------------------------------------------
-# Solvers and Pitfalls
-# ---------------------------------------------------------
+# Pitfalls
 st.markdown("---")
 st.markdown(r"""
 ### Algorithmic Pitfalls (The Catch)
