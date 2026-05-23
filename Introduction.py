@@ -39,7 +39,7 @@ with col3:
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend directly on the *eigenvector* $v$ itself. It uses the form: 
     $$A(v)v = \lambda v$$
-    Every time the direction or coordinates of the vector $v$ alter, the values inside the entire matrix $A(v)$ change completely. This is what we want to look at!
+    Every time the direction or coordinates of the vector $v$ changes, the values inside the entire matrix $A(v)$ change completely. This is what we want to look at!
     """)
 
 # What is NEPv and how to solve
