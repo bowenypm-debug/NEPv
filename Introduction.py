@@ -40,7 +40,7 @@ with col3:
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend directly on the state or coordinates of the *eigenvector* itself. 
     $$A(v)v = \lambda v$$
-    As the vector $v$ changes position, the entire matrix landscape warps and mutates. This is our focus!
+    As the vector $v$ changes position, the entire matrix landscape warps and mutates. This is what we want to look at!
     """)
 
 # ---------------------------------------------------------
