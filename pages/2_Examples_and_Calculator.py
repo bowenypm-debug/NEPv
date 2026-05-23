@@ -46,8 +46,9 @@ with st.expander("📊 View this step by step worked example question using SCF 
 
     $$H(x_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
     
-    Next, we calculate the standard linear eigenvectors for this fixed matrix $H(x_0)$. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
-    $$\text{Resulting Eigenvector} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
+    From new calculated matrix function, we can calculate the eigenvectors for this matrix $H(x_0)$ but this would give us 2 eigenvalues and eigenvectors. This is why we take the biggest eigenvalue and corresponding eigenvectors:
+    
+    $$\text{Eigenvector} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     We update our next state vector guess to this result:
     $$x_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
