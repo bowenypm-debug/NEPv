@@ -106,10 +106,11 @@ with st.expander("📊 View this step by step worked example question using Newt
     
     $$\text{Error} = H(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
     
-    This shows the solver that the current guess has zero balancing error along the X-axis, but a structural mismatch of $+1.0$ pointing along the Y-axis.
+    This tells us that the current guess has no error along the x-axis, but there is an error of $+1.0$ along the y-axis.
     
-    **Step 2: Apply the Mathematical Correction**  
-    The Newton solver modifies our vector by subtracting a fraction of this residual vector to damp out the error (the playground engine below uses a step multiplier of $0.4$):
+    **Apply the Mathematical Correction**  
+    The Newton method modifies our vector by subtracting a fraction of this error vector to reduce the error which we will $0.4$ here ($0.4$ is used as the calculator below also uses this value):
+    
     $$v_{\text{raw}} = v_0 - 0.4 \cdot \text{Residual} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
     
     Finally, because a valid eigenvector must be a normalized unit vector, we project it back onto our boundary circle:
