@@ -44,7 +44,7 @@ with col_pit2:
     st.markdown(r"""
     Because the SCF and Newton based method rely on looping while getting slightly closer on every loop, where you decide to start your initial guess matters a lot. 
     
-    If you pick a starting point that is super far away from a true solution, the algorithms would have to travel a massive distance to get to the true solution. As a result, the calculations ca take an excessive number of iterations to find the target.
+    If you pick a starting point that is super far away from a true solution, the algorithms would have to travel a massive distance to get to the true solution. As a result, the calculations can take an excessive number of iterations to find the target.
     """)
     
 # Page navigation
