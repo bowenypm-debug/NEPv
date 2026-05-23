@@ -4,7 +4,7 @@
 
 ## Problem Statement
 
-Traditional linear eigenvalue problems seek a scalar lambda and a non-zero vector v such that Av = \(\lambda \)* v, where the matrix A is constant. However, in many real-world systems—such as electronic structure calculations in quantum chemistry (e.g., Self-Consistent Field equations) and advanced machine learning data clustering—the matrix itself changes depending on its own eigenvectors. This is a Nonlinear Eigenvalue Problem with Eigenvector Dependency (NEPv), mathematically stated as:
+Traditional linear eigenvalue problems seek a scalar lambda and a non-zero vector v such that Av = lambda * v, where the matrix A is constant. However, in many real-world systems—such as electronic structure calculations in quantum chemistry (e.g., Self-Consistent Field equations) and advanced machine learning data clustering—the matrix itself changes depending on its own eigenvectors. This is a Nonlinear Eigenvalue Problem with Eigenvector Dependency (NEPv), mathematically stated as:
 
 A(v)v = lambda * v
 
