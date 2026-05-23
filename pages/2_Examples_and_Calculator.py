@@ -111,9 +111,9 @@ with st.expander("📊 View this step by step worked example question using Newt
     **Apply the Mathematical Correction**  
     The Newton method modifies our vector by subtracting a fraction of this error vector to reduce the error which we will $0.4$ here ($0.4$ is used as the calculator below also uses this value):
     
-    $$v_{\text{raw}} = v_0 - 0.4 \cdot \text{Residual} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
+    $$v_1 = v_0 - 0.4 \cdot \text{Error} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} - \begin{pmatrix} 0 \\ 0.4 \end{pmatrix} = \begin{pmatrix} 1 \\ -0.4 \end{pmatrix}$$
     
-    Finally, because a valid eigenvector must be a normalized unit vector, we project it back onto our boundary circle:
+    Finally, because a valid eigenvector must be a normalized unit vector, we calculate the normalized version of $v_1$:
     $$v_1 = \frac{v_{\text{raw}}}{||v_{\text{raw}}||} \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
     
     Notice how this structured algebraic step immediately shifts the vector coordinates toward the correct quadrant to resolve the mismatch!
