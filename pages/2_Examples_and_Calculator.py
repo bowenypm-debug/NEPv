@@ -33,31 +33,32 @@ When the input vector and the output eigenvector matches up, the system has achi
 
 with st.expander("📊 View this step by step worked example question using SCF (2 by 2)"):
     st.markdown(r"""
-    Let's calculate the first few steps using our baseline problem matrix:
-    $$H(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
+    Let's calculate the first few steps using our baseline problem formulated as $H(x)x = \lambda x$:
+    
+    $$H(x)x = \lambda x \implies \begin{pmatrix} 1.0 + 1.5|x_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|x_2|^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
     
     **Step 0: Choose an Initial Guess**  
     We select a simple starting unit vector pointing along the X-axis: 
-    $$v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
+    $$x_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
     **Iteration 1: Plugging the Guess in**  
-    We plug our coordinates ($v_1 = 1, v_2 = 0$) into the matrix formula. This yields a standard, static linear matrix:
-    $$H(v_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
+    We plug the coordinates of our guess ($x_1 = 1, x_2 = 0$) into our matrix function. This frozen evaluation yields a standard, static linear matrix:
+    $$H(x_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
     
-    Next, we calculate the standard linear eigenvectors for this fixed matrix $H(v_0)$. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
+    Next, we calculate the standard linear eigenvectors for this fixed matrix $H(x_0)$. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
     $$\text{Resulting Eigenvector} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
-    We update our next guess to this result:
-    $$v_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
+    We update our next state vector guess to this result:
+    $$x_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     **Iteration 2: Repeating the Process**  
-    Now we take our new updated vector ($v_1 = 0.943, v_2 = 0.332$) and plug it back into the original matrix formula to get our next linear matrix $H(v_1)$:
-    $$H(v_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
+    Now we take our new updated vector coordinates ($x_1 = 0.943, x_2 = 0.332$) and feed them back into the matrix formula to get our next frozen linear matrix $H(x_1)$:
+    $$H(x_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
-    Computing the dominant standard eigenvector for this updated matrix gives us our next step:
-    $$v_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
+    Computing the dominant standard eigenvector for this updated matrix gives us our next trajectory coordinate:
+    $$x_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
-    With each iteration, the difference between the vector we plug into $H(v)$ and the eigenvector we get out shrinks, tracking a direct path toward a stable equilibrium.
+    With each iteration, the difference between the state vector $x$ we plug into $H(x)$ and the eigenvector we extract out shrinks, tracking a direct path toward a stable self-consistent equilibrium.
     """)
 
 st.markdown("---")
