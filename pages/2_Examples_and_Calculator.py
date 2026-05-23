@@ -14,7 +14,7 @@ Because any valid solution vector must satisfy the normalization constraint $||v
 # =========================================================================
 # 1. SCF Section
 # =========================================================================
-st.subheader("1. The Self-Consistent Field (SCF) Iteration")
+st.subheader("Method 1: Self-Consistent Field (SCF)")
 st.markdown(r"""
 In a standard linear eigenvalue problem, you solve $Av = \lambda v$ where the matrix $A$ is a static constant. In a Nonlinear Eigenvalue Problem (NEPv), the matrix entries change depending on the vector $v$ you plug into it. This is commonly written in the mathematical form:
 
@@ -65,7 +65,7 @@ st.markdown("---")
 # =========================================================================
 # 2. Newton Section
 # =========================================================================
-st.subheader("2. Newton-Based Optimization Methods")
+st.subheader("Method 2: Newton-Based Methods")
 st.markdown(r"""
 While SCF simply updates the vector step-by-step using the latest eigenvector, it can struggle or oscillate endlessly if the matrix entries in $H(v)$ change too rapidly. **Newton-based methods** take a more mathematical approach by explicitly measuring our balance error.
 
