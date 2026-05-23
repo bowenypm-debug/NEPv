@@ -63,5 +63,5 @@ with col_footer1:
     st.write("Page 1 of 3")
 
 with col_footer2:
-    if st.button("➡️ Solving Problems", use_container_width=True):
+    if st.button("Solving Problems ➡️", use_container_width=True):
         st.switch_page("1_Examples_and_Solvers.py")
