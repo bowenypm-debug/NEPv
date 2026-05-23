@@ -52,22 +52,24 @@ st.markdown("---")
 st.markdown(r"""
 ## What does an NEPv actually do?
 
-In a traditional system, finding an eigenvector is like finding a fixed path on a permanent map. 
+In a traditional math problem, finding an eigenvector is like following a fixed trail on a map—the trail stays exactly where it is while you walk on it. 
 
-In an **NEPv**, it is like trying to find a path while your footsteps actively alter the terrain. Because the matrix $A(v)$ changes depending on $v$, computing a solution requires finding a state of **self-consistency**—a point where the vector creates a matrix landscape that, in turn, outputs that exact same vector direction back.
+In an **NEPv**, it is like trying to find a path through deep sand or snow where **your footsteps actively alter the ground beneath you**. Because the matrix $A(v)$ alters its values depending on the vector $v$ you insert, computing a final answer requires finding a balanced state of **self-consistency**. 
 
-This framework is highly critical in advanced computational sciences, such as calculating electronic structures in quantum chemistry or solving data-clustering problems in machine learning.
+Think of it as a perfect feedback loop: you feed a vector into the matrix formula, the matrix updates its numbers based on that vector, and then outputs a directional arrow that points in that exact same direction. 
+
+This framework is highly critical in advanced computational sciences, such as tracking electron clouds in quantum chemistry or isolating interconnected data groups in machine learning.
 
 ---
 
 ## How do we solve an NEPv?
 
-Because the matrix changes continuously as $v$ moves, we generally cannot use standard closed-form algebraic shortcuts (like finding $\det(A - \lambda I) = 0$). Instead, computers must rely on **iterative numerical methods** to hunt down stable solutions. 
+Because the matrix grid continuously changes shape as the vector moves, we cannot use standard algebraic shortcuts from regular class (like calculating determinants by hand). Instead, computers have to use **running guessing loops** to hunt down stable balance points. 
 
-On this website, you will explore two primary classes of solvers:
+On this website, you will explore two primary ways computers do this:
 
-1. **Self-Consistent Field (SCF) Iteration:** A fixed-point iteration strategy. The computer takes a guess vector $v_k$, builds the static matrix $A(v_k)$, extracts its traditional dominant eigenvector to use as the *next* guess $v_{k+1}$, and repeats until the vector stops moving. It is simple but can oscillate wildy if the nonlinearity is too strong.
-2. **Newton-Based Methods:** A more aggressive optimization strategy. It treats the problem as a root-finding challenge, looking at the "residual error" gradient to make sharp, mathematically calculated adjustments that force the input and output into rapid alignment.
+1. **Self-Consistent Field (SCF) Iteration (The Simple Loop):** The computer takes a starting guess vector, plugs it into the matrix formula to freeze it into a standard matrix, calculates the traditional eigenvector for that matrix, and sets that result as the *new* guess. It repeats this cycle over and over until the input and output match. It is easy to build, but it can panic and bounce back and forth if the rules change too violently.
+2. **Newton-Based Methods (The Smart Correction):** Instead of just blindly calculating a new arrow at every step, this method measures the exact **error** between your current guess and a true solution. It then makes smart, calculated adjustments to subtract that error away, steering the vector directly toward a balanced target.
 """)
 
 # ---------------------------------------------------------
@@ -101,7 +103,7 @@ with col_app2:
 st.markdown("---")
 st.markdown(r"""
 ### Algorithmic Pitfalls (The Catch)
-Numerical optimization isn't always smooth sailing. When you dive into our calculator page, you will observe two classic pitfalls:
+Solving nonlinear math problems isn't always smooth sailing. When you dive into our calculator page, you will get to see two classic pitfalls firsthand:
 """)
 
 col_pit1, col_pit2 = st.columns(2)
@@ -109,17 +111,17 @@ col_pit1, col_pit2 = st.columns(2)
 with col_pit1:
     st.error("Infinite Oscillations")
     st.markdown(r"""
-    If the nonlinearity weights ($\alpha$ or $\beta$) are scaled up too high, the matrix landscape warps too aggressively. 
+    If you turn the nonlinearity settings up too high, the matrix landscape reacts too drastically to changes. 
     
-    Instead of settling down, the **SCF solver** will get caught trapped in an infinite loop, violently bouncing back and forth between two non-solution vectors forever.
+    Instead of settling down to a single answer, the **SCF solver** gets stuck on a mathematical seesaw—violently slamming back and forth between two different positions forever without ever finding a balance point.
     """)
 
 with col_pit2:
-    st.error("Local Minima & Guess Sensitivity")
+    st.error("Guess Sensitivity")
     st.markdown("""
-    Because nonlinear equations create multi-valley landscapes, changing your starting vector guess ($v_0$) by just a tiny fraction can cause the solver to isolate a completely different equilibrium point—or fail to converge entirely. 
+    Because nonlinear problems create complex landscapes with many different valleys, your starting point matters immensely. 
     
-    Finding a robust initial guess is often half the battle!
+    Changing your initial vector guess ($v_0$) by just a tiny hair can cause the computer to slide into a completely different balance point—or miss all of them entirely. Finding a good starting guess is often half the battle!
     """)
     
 # ---------------------------------------------------------
