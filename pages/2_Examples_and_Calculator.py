@@ -61,7 +61,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     Again calculating the largest eigenvector for this updated matrix gives us our next eigenvector guess:
     $$x_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
-    We then continue this process and the final result that we get is:
+    We then continue this process and the final result that we will arrive at is:
 
     $$x \approx \begin{pmatrix} 0.903 \\ 0.429 \end{pmatrix}$$
     """)
@@ -73,12 +73,12 @@ st.markdown("---")
 # =========================================================================
 st.subheader("Method 2: Newton-Based Methods")
 st.markdown(r"""
-While SCF simply updates the vector step-by-step using the latest eigenvector, it can struggle or oscillate endlessly if the matrix entries in $H(v)$ change too rapidly. **Newton-based methods** take a more mathematical approach by explicitly measuring our balance error.
+In SCF, we update the vector setp by step by comparing an old eigenvector to a new eigenvector but in the Newton based method, instead of updating the vector, we instead find the difference between the true solution and the guessed solution and minimise this difference.
 
-Using our common form $H(v)v = \lambda v$, if we group everything on one side, we can define a **residual vector (the error)** that tracks how far away our current guess is from a true solution:
+Using our common form $H(v)v = \lambda v$, if we group everything on one side, we can define an "error" vector that tracks how far away our current guess is from a true solution:
 $$\text{Residual} = H(v)v - \lambda v$$
 
-If our vector is a perfect solution, the residual vector will equal exactly $\vec{0}$. 
+If our vector is an exact solution, the "error" vector should equal exactly $\vec{0}$. 
 
 Instead of resetting our guess completely to the new eigenvector like SCF does, Newton's method calculates the algebraic "slope" of this residual error. It calculates exactly how changing our coordinates will minimize the error, and then takes a calculated step to subtract that error from our position:
 $$v_{k+1} = v_k - \Delta v$$
