@@ -68,4 +68,4 @@ with col_footer1:
 
 with col_footer2:
     if st.button("Solving Problems ➡️", use_container_width=True):
-        st.switch_page("1_Examples_and_Solvers.py")
+        st.switch_page("pages/1_Examples_and_Solvers.py")
