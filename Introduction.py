@@ -6,14 +6,12 @@ st.title("An Introduction to Nonlinear Eigenvalue Problems (NEPv)")
 st.markdown("---")
 
 st.markdown(r"""
-Welcome! This interactive web suite is designed to guide you through the theory, geometry, and computation of a fascinating frontier in advanced linear algebra: the **Nonlinear Eigenvalue Problem with respect to the eigenvector (NEPv)**.
+Welcome! This interactive website is designed to guide you through the theory, geometry, and computation a fascinating yet highly advanced linear algebra topic: **Nonlinear Eigenvalue Problem with Eigenvector Depedency (NEPv)**.
 
-To understand what an NEPv is and why it is unique, it helps to look at the topic in three distinct levels of mathematical complexity.
+To understand what an NEPv is and why it is unique, lets first look at the topic in three distinct levels of difficulty.
 """)
 
-# ---------------------------------------------------------
-# The Three Levels of Eigenproblems
-# ---------------------------------------------------------
+# 3 eigenvalue/eigenvector problem levels
 st.markdown("## 🪜 The Three Levels of Eigenvalue/Eigenvector Problems")
 
 col1, col2, col3 = st.columns(3)
