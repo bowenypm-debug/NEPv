@@ -8,7 +8,7 @@ st.set_page_config(page_title="Example and Calculator", layout="wide")
 st.title("Examples and Calculator")
 st.markdown("""
 Now let's take a look at how we actually solve NEPv problems. 
-Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a **Unit Circle**. 
+Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a unit circle. 
 """)
 
 # =========================================================================
