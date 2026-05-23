@@ -39,6 +39,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     
     **Choose an Initial Guess**  
     First thing we need to do is to select a simple starting unit vector pointing along the x-axis: 
+    
     $$x_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
     **Iteration 1: Plugging the Guess in**  
@@ -51,6 +52,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     $$\text{Eigenvector} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     We then update our vector guess to this result:
+    
     $$x_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     **Iteration 2: Repeating the Process**  
@@ -59,6 +61,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     $$H(x_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
     Again calculating the largest eigenvector for this updated matrix gives us our next eigenvector guess:
+    
     $$x_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
     We then continue this process and the final result that we will arrive at is:
@@ -93,11 +96,11 @@ with st.expander("📊 View this step by step worked example question using Newt
     **Evaluate the Current Error**  
     We will use the same initial guess as before:
     
-    $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
+    $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
     
     Multiplying this vector by our matrix yields the product vector $H(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$ and from the form $H(v)v = \lambda v$, we get the equation:
 
-    $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} = \lambda \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+    $$\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} = \lambda \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
     The closes possible solution for an eigenvalue $\lambda$ to achieve consistency in this equation is $\lambda = 2.5$ so this is what we will use.
     
@@ -139,11 +142,11 @@ with col_mat_in3:
     base_a22 = st.number_input("Static part of $A_{22}$", value=0.5, step=0.1)
     beta = st.slider("Nonlinearity Weight 2", 0.0, 4.0, 0.5, 0.1)
 
-st.markdown("Your Active Equation Setup:")
+st.markdown("Your Current Equation Setup:")
 st.latex(rf"""
 A(v) = \begin{{pmatrix}} 
-{base_a11} + {alpha}|v_1|^2 & {off_diag} \\ 
-{off_diag} & {base_a22} + {beta}|v_2|^2 
+{base_a11} + {alpha}v_1^2 & {off_diag} \\ 
+{off_diag} & {base_a22} + {beta}v_2^2 
 \end{{pmatrix}}
 """)
 
