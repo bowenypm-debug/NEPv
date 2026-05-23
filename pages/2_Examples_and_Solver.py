@@ -244,5 +244,5 @@ with col_footer1:
     st.write("Page 3 of 3")
 
 with col_footer2:
-    if st.button("↩️ Introduction", use_container_width=True):
-        st.switch_page("Introduction.py")
+    if st.button("↩️ Graphical Visualizer", use_container_width=True):
+        st.switch_page("3_Graphical_Display.py")
