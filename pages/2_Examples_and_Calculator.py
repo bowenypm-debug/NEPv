@@ -194,7 +194,7 @@ def run_newton(v_start, max_iter=15):
 # 4. Trajectory Simulation Display
 # =========================================================================
 st.markdown("---")
-st.markdown("### 🏃‍♂️ Run the Solvers")
+st.markdown("NEPv Calculators")
 
 col1, col2 = st.columns([1, 2])
 
@@ -210,7 +210,7 @@ with col1:
     scf_trajectory = run_scf(v_init)
     newton_trajectory = run_newton(v_init)
     
-    st.markdown("##### 🏁 Race Results")
+    st.markdown("Results")
     st.write(f"**SCF Iterations:** `{len(scf_trajectory) - 1}` steps")
     st.write(f"**Newton Iterations:** `{len(newton_trajectory) - 1}` steps")
     
