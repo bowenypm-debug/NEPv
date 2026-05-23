@@ -22,7 +22,7 @@ The SCF method treats the problem as a sequence of standard linear eigenvalue pr
 *   Linear Solver Phase: It computes the standard eigenvalues and eigenvectors of A(v_k).
 *   Update: The eigenvector corresponding to the targeted algebraic property is chosen as v_{k+1}, normalized such that its length equals 1, and the loop repeats until compliance criteria are met.
 
-### 2. Newton-Based Error Minimization Method
+### 2. Newton-Based Method
 Rather than solving a sequence of linear problems, the Newton-based approach re-frames the NEPv as finding the roots of a continuous algebraic error vector function F(v).
 *   Step Implementation: The system sets up the residual algebraic function representing the system error variance.
 *   Descent Step: It utilizes numerical approximations of the system's local sensitivities to calculate a correction trajectory vector.
