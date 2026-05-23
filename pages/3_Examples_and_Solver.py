@@ -14,7 +14,7 @@ Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions li
 # =========================================================================
 # 1. SCF Deep Dive & Collapsible Worked Example
 # =========================================================================
-st.subheader("1. Strategy A: The Self-Consistent Field (SCF) Loop")
+st.subheader("Method 1: Self-Consistent Field (SCF)")
 st.markdown(r"""
 Imagine you are standing in front of a magical, warped mirror. When you move, the mirror itself bends and changes shape. Your goal is to find a spot where your reflection points in the **exact same direction** you are standing.
 
@@ -62,7 +62,7 @@ st.markdown("---")
 # =========================================================================
 # 2. Newton Method Deep Dive & Collapsible Worked Example
 # =========================================================================
-st.subheader("2. Strategy B: The Newton-Based Error Fixer")
+st.subheader("Method 2: Newton-Based Error")
 st.markdown(r"""
 SCF is simple, but it has a weakness: if the mirror warps too violently when you move, you might end up wildly bouncing back and forth forever without ever settling down.
 
