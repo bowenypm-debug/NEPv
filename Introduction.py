@@ -21,7 +21,8 @@ with col1:
     st.info("**Linear Eigenproblem**")
     st.markdown(r"""
     In a traditional eigenproblem, we look at a specific, fixed matrix $A$. You look for a scalar $\lambda$ known as the eigenvalue and a non zero vector $v$ corresponding to the scalar $\lambda$ known as the eigenvector such that:
-    $$Av = \lambda v$$
+    
+    $$Av = \lambda v$$.
     The matrix $A$ will never change in this case. It acts as a fixed linear transformation on the vector space.
     """)
 
