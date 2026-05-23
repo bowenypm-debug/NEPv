@@ -102,7 +102,7 @@ col_pit1, col_pit2 = st.columns(2)
 with col_pit1:
     st.error("Infinite Oscillations")
     st.markdown(r"""
-    If you turn the nonlinearity settings up too high, the matrix landscape reacts too drastically to changes. 
+    If the numbers in the problem are too large or have a huge different between them, the possibility of overcorrecting is very high. 
     
     Instead of settling down to a single answer, the **SCF solver** gets stuck on a mathematical seesaw—violently slamming back and forth between two different positions forever without ever finding a balance point.
     """)
