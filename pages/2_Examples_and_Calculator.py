@@ -245,4 +245,4 @@ with col_footer1:
 
 with col_footer2:
     if st.button("➡️ Graphical Visualizer", use_container_width=True):
-        st.switch_page("3_Graphical_Display.py")
+        st.switch_page("3_Graphical_Sandbox.py")
