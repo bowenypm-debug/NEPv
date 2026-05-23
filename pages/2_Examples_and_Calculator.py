@@ -86,10 +86,14 @@ $$v_{k+1} = v_k - \Delta v$$""")
 
 with st.expander("📊 View this step by step worked example question using Newton based method (2 by 2)"):
     st.markdown(r"""
-    Let's look at how Newton's method calculates its algebraic adjustments using our initial position.
+    Lets use the same setup as in the SCF example but using Newton based method this time:
+
+    $$\begin{pmatrix} 1.0 + 1.5x_1^2 & 1.0 \\ 1.0 & 0.5 + 0.5x_2^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
     
-    **Step 0: Evaluate the Current Residual**  
-    We start at our initial guess: $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
+    **Evaluate the Current Error**  
+    We will use the same initial guess as before:
+    
+    $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
     
     Multiplying this vector by our evaluated matrix yields the product vector $H(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$. Using the standard Rayleigh quotient ($v^T H(v) v$), our current eigenvalue estimate is $\lambda = 2.5$.
     
