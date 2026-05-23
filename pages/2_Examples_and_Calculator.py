@@ -115,7 +115,7 @@ with st.expander("📊 View this step by step worked example question using Newt
     
     Finally, because a valid eigenvector must be a normalized unit vector, we calculate the normalized version of $v_1$:
     
-    $$\sqrt{1^2 + (-0.4)^2} = 1.077 \text{and so} x_1 = \frac{1}{1.077} = 0.928, y_1 = \frac{-0.4}{1.077} = -0.371$$
+    $$\sqrt{1^2 + (-0.4)^2} = 1.077 \text{ and so } x_1 = \frac{1}{1.077} = 0.928, y_1 = \frac{-0.4}{1.077} = -0.371$$
     
     $$v_1 \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
     
