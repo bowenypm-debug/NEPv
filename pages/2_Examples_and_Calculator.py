@@ -35,7 +35,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     st.markdown(r"""
     Let's look at an example question with the form $H(x)x = \lambda x$:
     
-    $$\begin{pmatrix} 1.0 + 1.5|x_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|x_2|^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+    $$\begin{pmatrix} 1.0 + 1.5x_1^2 & 1.0 \\ 1.0 & 0.5 + 0.5x_2^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
     
     **Choose an Initial Guess**  
     First thing we need to do is to select a simple starting unit vector pointing along the x-axis: 
