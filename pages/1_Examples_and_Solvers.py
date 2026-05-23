@@ -255,5 +255,5 @@ with col_footer1:
     st.write("Page 2 of 3")
 
 with col_footer2:
-    if st.button("➡️ Applications and Pitfalls", use_container_width=True):
+    if st.button("Applications and Pitfalls ➡️", use_container_width=True):
         st.switch_page("2_Applications_and_Pitfalls.py")
