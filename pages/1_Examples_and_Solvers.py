@@ -256,4 +256,4 @@ with col_footer1:
 
 with col_footer2:
     if st.button("Applications and Pitfalls ➡️", use_container_width=True):
-        st.switch_page("2_Applications_and_Pitfalls.py")
+        st.switch_page("pages/2_Applications_and_Pitfalls.py")
