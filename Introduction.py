@@ -27,7 +27,7 @@ with col1:
 
 with col2:
     st.markdown("### Level 2: NEP")
-    st.warning("**Nonlinear in Parameter $\lambda$**")
+    st.warning("**Nonlinear in parameter $\lambda$**")
     st.markdown(r"""
     In a standard Nonlinear Eigenvalue Problem (NEP), the matrix entries depend nonlinearly on the *eigenvalue* parameter itself, often written as $T(\lambda)$. 
     $$T(\lambda)v = 0$$
@@ -36,7 +36,7 @@ with col2:
 
 with col3:
     st.markdown("### Level 3: NEPv")
-    st.success("**Nonlinear in Vector $v$**")
+    st.success("**Nonlinear in parameter $\lambda$ and vector $v$**")
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend directly on the state or coordinates of the *eigenvector* itself. 
     $$A(v)v = \lambda v$$
