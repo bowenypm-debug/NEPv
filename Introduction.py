@@ -29,7 +29,7 @@ with col2:
     st.markdown("### Level 2: NEP")
     st.warning("**Nonlinear in parameter $\lambda$**")
     st.markdown(r"""
-    The standard Nonlinear Eigenvalue Problem (NEP) is a problem where the matrix entries depend nonlinearly on the *eigenvalue* parameter itself meaning that matrix entries don't depend on being a scalar $\lambda$ with a power of one but depend based on a function, often written as $T(\lambda)$. 
+    The standard Nonlinear Eigenvalue Problem (NEP) is a problem where the matrix entries depend nonlinearly on the *eigenvalue* parameter itself. This means instead of $\lambda$ sitting outside, the entire matrix changes based on a function of $\lambda$, often written as $T(\lambda)$: 
     $$T(\lambda)v = 0$$
     """)
 
