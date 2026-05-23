@@ -12,19 +12,21 @@ Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions li
 """)
 
 # =========================================================================
-# 1. SCF Section (Pure traditional linear algebra explanation)
+# 1. SCF Section (Updated to standard H(v)v = \lambda v form)
 # =========================================================================
 st.subheader("1. The Self-Consistent Field (SCF) Iteration")
 st.markdown(r"""
-In a standard linear eigenvalue problem, the matrix $A$ is constant. In a Nonlinear Eigenvalue Problem (NEPv), the matrix $A(v)$ changes depending on the vector $v$ you plug into it. 
+In a standard linear eigenvalue problem, you solve $Av = \lambda v$ where the matrix $A$ is a static constant. In a Nonlinear Eigenvalue Problem (NEPv), the matrix entries change depending on the vector $v$ you plug into it. This is commonly written in the mathematical form:
 
-The **Self-Consistent Field (SCF)** method solves this by turning the nonlinear problem into a loop of traditional linear problems:
+$$H(v)v = \lambda v$$
+
+The **Self-Consistent Field (SCF)** method solves this by turning the nonlinear equation into a loop of traditional linear problems:
 
 1. **Choose an initial guess** vector ($v_0$).
-2. **Plug your guess into the formula** to calculate a fixed, standard matrix: $A_{\text{frozen}} = A(v_0)$.
+2. **Plug your guess into the formula** to calculate a fixed, standard matrix: $H(v_0)$.
 3. **Compute the traditional eigenvectors** of this fixed matrix.
 4. **Update your next guess** ($v_1$) to be the resulting eigenvector.
-5. **Repeat the loop** until the vector you plug into the matrix and the resulting eigenvector output are exactly the same ($v_k \approx v_{k+1}$).
+5. **Repeat the loop** until the vector you plug into the matrix formula and the resulting eigenvector output are exactly the same ($v_k \approx v_{k+1}$).
 
 When the input vector and the output eigenvector perfectly match, the system has achieved *self-consistency*, meaning you have successfully isolated a true solution to the nonlinear equation.
 """)
@@ -32,7 +34,7 @@ When the input vector and the output eigenvector perfectly match, the system has
 with st.expander("📊 View this step by step worked example question using SCF (2 by 2)"):
     st.markdown(r"""
     Let's calculate the first few steps using our baseline problem matrix:
-    $$A(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
+    $$H(v) = \begin{pmatrix} 1.0 + 1.5|v_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|v_2|^2 \end{pmatrix}$$
     
     **Step 0: Choose an Initial Guess**  
     We select a simple starting unit vector pointing along the X-axis: 
@@ -40,35 +42,35 @@ with st.expander("📊 View this step by step worked example question using SCF 
     
     **Iteration 1: Plugging the Guess in**  
     We plug our coordinates ($v_1 = 1, v_2 = 0$) into the matrix formula. This yields a standard, static linear matrix:
-    $$A(v_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
+    $$H(v_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
     
-    Next, we calculate the standard linear eigenvectors for this matrix. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
+    Next, we calculate the standard linear eigenvectors for this fixed matrix $H(v_0)$. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
     $$\text{Resulting Eigenvector} \approx \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     We update our next guess to this result:
     $$v_1 = \begin{pmatrix} 0.943 \\ 0.332 \end{pmatrix}$$
     
     **Iteration 2: Repeating the Process**  
-    Now we take our new updated vector ($v_1 = 0.943, v_2 = 0.332$) and plug it back into the original matrix formula to get our next linear matrix:
-    $$A(v_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
+    Now we take our new updated vector ($v_1 = 0.943, v_2 = 0.332$) and plug it back into the original matrix formula to get our next linear matrix $H(v_1)$:
+    $$H(v_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
     Computing the dominant standard eigenvector for this updated matrix gives us our next step:
     $$v_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
-    With each iteration, the difference between the vector we plug in and the eigenvector we get out shrinks, tracking a direct path toward a stable equilibrium.
+    With each iteration, the difference between the vector we plug into $H(v)$ and the eigenvector we get out shrinks, tracking a direct path toward a stable equilibrium.
     """)
 
 st.markdown("---")
 
 # =========================================================================
-# 2. Newton Section (Pure traditional linear algebra explanation)
+# 2. Newton Section (Updated to standard H(v)v = \lambda v form)
 # =========================================================================
 st.subheader("2. Newton-Based Optimization Methods")
 st.markdown(r"""
-While SCF simply updates the vector step-by-step using the latest eigenvector, it can struggle or oscillate endlessly if the matrix entries change too rapidly. **Newton-based methods** take a more mathematical approach by explicitly measuring our balance error.
+While SCF simply updates the vector step-by-step using the latest eigenvector, it can struggle or oscillate endlessly if the matrix entries in $H(v)$ change too rapidly. **Newton-based methods** take a more mathematical approach by explicitly measuring our balance error.
 
-For a traditional eigenvalue problem, a solution must satisfy $A v = \lambda v$. If we group everything on one side, we can define a **residual vector (the error)** that tracks how far away our current guess is from a true solution:
-$$\text{Residual} = A(v)v - \lambda v$$
+Using our common form $H(v)v = \lambda v$, if we group everything on one side, we can define a **residual vector (the error)** that tracks how far away our current guess is from a true solution:
+$$\text{Residual} = H(v)v - \lambda v$$
 
 If our vector is a perfect solution, the residual vector will equal exactly $\vec{0}$. 
 
@@ -86,11 +88,11 @@ with st.expander("📊 View this step by step worked example question using Newt
     **Step 0: Evaluate the Current Residual**  
     We start at our initial guess: $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
     
-    Multiplying this vector by our evaluated matrix yields the product vector $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$. Using the standard Rayleigh quotient ($v^T A v$), our current eigenvalue estimate is $\lambda = 2.5$.
+    Multiplying this vector by our evaluated matrix yields the product vector $H(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$. Using the standard Rayleigh quotient ($v^T H(v) v$), our current eigenvalue estimate is $\lambda = 2.5$.
     
     **Step 1: Calculate the Error Vector**  
     We check how far off our matrix product is from a perfect scalar multiple:
-    $$\text{Residual Vector} = A(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
+    $$\text{Residual Vector} = H(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
     
     This shows the solver that the current guess has zero balancing error along the X-axis, but a structural mismatch of $+1.0$ pointing along the Y-axis.
     
