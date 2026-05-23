@@ -58,10 +58,12 @@ with st.expander("📊 View this step by step worked example question using SCF 
     
     $$H(x_1) \approx \begin{pmatrix} 2.334 & 1.0 \\ 1.0 & 0.555 \end{pmatrix}$$
     
-    Computing the dominant standard eigenvector for this updated matrix gives us our next trajectory coordinate:
+    Again calculating the largest eigenvector for this updated matrix gives us our next eigenvector guess:
     $$x_2 \approx \begin{pmatrix} 0.912 \\ 0.410 \end{pmatrix}$$
     
-    With each iteration, the difference between the state vector $x$ we plug into $H(x)$ and the eigenvector we extract out shrinks, tracking a direct path toward a stable self-consistent equilibrium.
+    We then continue this process and the final result that we get is:
+
+    $$x \approx \begin{pmatrix} 0.903 \\ 0.429 \end{pmatrix}$$
     """)
 
 st.markdown("---")
