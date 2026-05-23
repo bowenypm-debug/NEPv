@@ -99,11 +99,12 @@ with st.expander("📊 View this step by step worked example question using Newt
 
     $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} = \lambda \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
     
-    The closes possible solution for an eigenvalue $\lambda$ to achieve consistency in this equation is $\lambda = 2.5$ so this is what we will take
+    The closes possible solution for an eigenvalue $\lambda$ to achieve consistency in this equation is $\lambda = 2.5$ so this is what we will use.
     
-    **Step 1: Calculate the Error Vector**  
-    We check how far off our matrix product is from a perfect scalar multiple:
-    $$\text{Residual Vector} = H(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
+    **Calculate the Error Vector**  
+    Now we shall check how far off we are from the perfect scalar multiple:
+    
+    $$\text{Error} = H(v_0)v_0 - \lambda v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} - 2.5 \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 0 \\ 1.0 \end{pmatrix}$$
     
     This shows the solver that the current guess has zero balancing error along the X-axis, but a structural mismatch of $+1.0$ pointing along the Y-axis.
     
