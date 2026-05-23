@@ -154,5 +154,5 @@ with col_footer1:
     st.write("Page 2 of 3")
 
 with col_footer2:
-    if st.button("➡️ Next: Examples and Calculator"):
-        st.switch_page("pages/2_Examples_and_Solver.py")
+    if st.button("↩️ Introduction"):
+        st.switch_page("Introduction.py")
