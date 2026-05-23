@@ -119,7 +119,7 @@ with st.expander("📊 View this step by step worked example question using Newt
     
     $$v_1 \approx \begin{pmatrix} 0.928 \\ -0.371 \end{pmatrix}$$
     
-    Notice how this structured algebraic step immediately shifts the vector coordinates toward the correct quadrant to resolve the mismatch!
+    Like SCF, we then simply repeat the process until we get an error vector as close to 0 as possible or exactly 0 if possible
     """)
 
 # =========================================================================
