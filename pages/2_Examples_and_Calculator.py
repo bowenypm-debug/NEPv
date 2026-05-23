@@ -33,9 +33,9 @@ When the input vector and the output eigenvector matches up, the system has achi
 
 with st.expander("📊 View this step by step worked example question using SCF (2 by 2)"):
     st.markdown(r"""
-    Let's calculate the first few steps using our baseline problem formulated as $H(x)x = \lambda x$:
+    Let's look at an example question with the form $H(x)x = \lambda x$:
     
-    $$H(x)x = \lambda x \implies \begin{pmatrix} 1.0 + 1.5|x_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|x_2|^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
+    $$\begin{pmatrix} 1.0 + 1.5|x_1|^2 & 1.0 \\ 1.0 & 0.5 + 0.5|x_2|^2 \end{pmatrix} \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} = \lambda \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}$$
     
     **Step 0: Choose an Initial Guess**  
     We select a simple starting unit vector pointing along the X-axis: 
