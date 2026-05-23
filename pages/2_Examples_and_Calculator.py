@@ -73,7 +73,7 @@ st.markdown("---")
 # =========================================================================
 st.subheader("Method 2: Newton-Based Methods")
 st.markdown(r"""
-In SCF, we update the vector setp by step by comparing an old eigenvector to a new eigenvector but in the Newton based method, instead of updating the vector, we instead find the difference between the true solution and the guessed solution and minimise this difference.
+In SCF, we update the vector setp by step by comparing an old eigenvector to a new eigenvector but in the Newton based method, instead of updating the vector, we instead find the difference between the true solution and the guessed solution and minimize this difference.
 
 Using our common form $H(v)v = \lambda v$, if we group everything on one side, we can define an "error" vector that tracks how far away our current guess is from a true solution:
 
@@ -81,12 +81,8 @@ $$\text{Error} = H(v)v - \lambda v$$
 
 If our vector is an exact solution, the "error" vector should equal exactly $\vec{0}$. 
 
-Instead of resetting our guess completely to the new eigenvector like SCF does, Newton's method calculates the algebraic "slope" of this residual error. It calculates exactly how changing our coordinates will minimize the error, and then takes a calculated step to subtract that error from our position:
+Newton's method calculates exactly how changing our coordinates will minimize the error, and then takes a calculated step to subtract that error from our current location:
 $$v_{k+1} = v_k - \Delta v$$
-
-* **The Advantage:** Once your guess is reasonably close to a solution, Newton's method converges rapidly because it is mathematically calculating the shortest path to bring the residual error to zero.
-* **The Disadvantage:** It requires a decent initial guess. Because it relies heavily on local slopes, a bad starting guess can cause the calculation to overshoot and fail to converge.
-""")
 
 with st.expander("📊 View this step by step worked example question using Newton based method (2 by 2)"):
     st.markdown(r"""
