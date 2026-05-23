@@ -2,26 +2,28 @@ import streamlit as st
 
 # Real world uses
 st.markdown("## Real-World Applications: Where is this used?")
-st.write("Because the matrix transformation updates itself dynamically based on the state vector, the NEPv framework is the underlying math engine for several breakthroughs:")
+st.write(
+    "Because the math formula updates itself as the vector moves, "
+    "the NEPv framework is the secret engine behind some incredible modern breakthroughs:"
+)
 
 col_app1, col_app2 = st.columns(2)
 
 with col_app1:
-    st.markdown("### Quantum Chemistry & Material Science")
+    st.markdown("### 🧪 Quantum Chemistry & Finding Electrons")
     st.markdown(r"""
-    When simulating molecules or crystal lattices, the electrostatic forces acting on electrons depend entirely on where the electron cloud density (the state vector $v$) currently resides. 
+    When scientists simulate chemical molecules, they need to figure out where electrons are flying. The tricky part is that the electrical forces pushing the electrons around depend entirely on where the electron cloud (our vector $v$) currently sits. 
     
-    Solving the **Kohn-Sham equations** in Density Functional Theory (DFT) is fundamentally an NEPv problem. To calculate stable molecular orbits, the matrix and the vector must find perfect harmony.
+    Because the forces shift every time an electron moves, scientists use NEPv math to find a perfect balance point. Once the formulas and the electron cloud find harmony, it reveals exactly how stable a chemical or material will be in real life.
     """)
 
 with col_app2:
-    st.markdown("### Machine Learning & Graph Clustering")
+    st.markdown("### 💻 AI & Grouping Complicated Data")
     st.markdown(r"""
-    In advanced data analysis, traditional linear data cuts often fail to isolate complex groupings. 
+    In machine learning, computers constantly try to sort messy data into distinct groups (like identifying communities in a massive social network or objects in a photo). Traditional math tools can only draw straight lines, which easily fail when data groups are twisted or tangled together. 
     
-    By introducing nonlinear constraint matrices that change dynamically based on the partitioning vector, spectral clustering algorithms can isolate intricate, interleaved data communities that traditional standard eigen-solvers pass right through.
+    By using an NEPv framework, the sorting rules automatically warp and bend based on how the data is being grouped. This allows the computer to untangle and isolate complex, interwoven communities that standard math solvers completely miss.
     """)
-
 # Pitfalls
 st.markdown("---")
 st.markdown(r"""
