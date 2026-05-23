@@ -95,7 +95,11 @@ with st.expander("📊 View this step by step worked example question using Newt
     
     $v_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$. 
     
-    Multiplying this vector by our evaluated matrix yields the product vector $H(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$. Using the standard Rayleigh quotient ($v^T H(v) v$), our current eigenvalue estimate is $\lambda = 2.5$.
+    Multiplying this vector by our matrix yields the product vector $H(v_0)v_0 = \begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix}$ and from the form $H(v)v = \lambda v$, we get the equation:
+
+    $\begin{pmatrix} 2.5 \\ 1.0 \end{pmatrix} = \lambda \begin{pmatrix} 1 \\ 0 \end{pmatrix}$
+    
+    The closes possible solution for an eigenvalue $\lambda$ to achieve consistency in this equation is $\lambda = 2.5$ so this is what we will take
     
     **Step 1: Calculate the Error Vector**  
     We check how far off our matrix product is from a perfect scalar multiple:
