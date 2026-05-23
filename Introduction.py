@@ -39,7 +39,7 @@ with col3:
     st.markdown(r"""
     In an **NEPv**, the matrix entries depend on both the eigenvector $v$ and the eigenvalue $\lambda$ with a common form of: 
     $$A(v)v = \lambda v$$
-    As the vector $v$ changes position, the entire matrix landscape warps and mutates. This is what we want to look at!
+    When either eigenvector $v$ changes and/or eigenvalue $\lambda$changes, the entire matrix $A(x)$ changes. This is what we want to look at!
     """)
 
 # ---------------------------------------------------------
