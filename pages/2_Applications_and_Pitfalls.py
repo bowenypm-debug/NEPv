@@ -1,4 +1,5 @@
 import streamlit as st
+
 # Real world uses
 st.markdown("## Real-World Applications: Where is this used?")
 st.write("Because the matrix transformation updates itself dynamically based on the state vector, the NEPv framework is the underlying math engine for several breakthroughs:")
