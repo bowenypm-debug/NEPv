@@ -3,16 +3,16 @@ import numpy as np
 from scipy.linalg import eig
 import matplotlib.pyplot as plt
 
-st.set_page_config(page_title="Example and Calculator", layout="wide")
+st.set_page_config(page_title="Examples and Solvers", layout="wide")
 
-st.title("Examples and Calculator")
+st.title("Part 2: Algebraic Solvers & Examples")
 st.markdown("""
-Now let's take a look at how we actually solve NEPv problems. 
-Because solutions to an NEPv must satisfy $||v||_2 = 1$, all stable solutions live on the boundary of a unit circle. 
+Before we map out these problems visually, let's explore how we actually compute solutions to a Nonlinear Eigenvalue Problem (NEPv) algebraically. 
+Because any valid solution vector must satisfy the normalization constraint $||v||_2 = 1$, all steady-state solutions live precisely on the boundary of a **Unit Circle**.
 """)
 
 # =========================================================================
-# 1. SCF Section (Updated to standard H(v)v = \lambda v form)
+# 1. SCF Section
 # =========================================================================
 st.subheader("1. The Self-Consistent Field (SCF) Iteration")
 st.markdown(r"""
@@ -63,7 +63,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
 st.markdown("---")
 
 # =========================================================================
-# 2. Newton Section (Updated to standard H(v)v = \lambda v form)
+# 2. Newton Section
 # =========================================================================
 st.subheader("2. Newton-Based Optimization Methods")
 st.markdown(r"""
@@ -107,7 +107,7 @@ with st.expander("📊 View this step by step worked example question using Newt
     """)
 
 # =========================================================================
-# 3. Interactive Custom Matrix Input (Kept Exactly Same)
+# 3. Interactive Custom Matrix Input
 # =========================================================================
 st.markdown("---")
 st.markdown("### 🛠️ Design Your Own Matrix Problem")
@@ -175,7 +175,7 @@ def run_newton(v_start, max_iter=15):
     return np.array(path)
 
 # =========================================================================
-# 4. Trajectory Simulation Display (Kept Exactly Same)
+# 4. Trajectory Simulation Display
 # =========================================================================
 st.markdown("---")
 st.markdown("### 🏃‍♂️ Run the Solvers")
@@ -241,7 +241,7 @@ st.markdown("---")
 col_footer1, col_footer2 = st.columns([3, 1])
 
 with col_footer1:
-    st.write("Page 3 of 3")
+    st.write("Page 2 of 3")
 
 with col_footer2:
     if st.button("➡️ Graphical Visualizer", use_container_width=True):
