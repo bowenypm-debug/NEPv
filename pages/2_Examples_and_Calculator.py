@@ -42,7 +42,7 @@ with st.expander("📊 View this step by step worked example question using SCF 
     $$x_0 = \begin{pmatrix} 1 \\ 0 \end{pmatrix}$$
     
     **Iteration 1: Plugging the Guess in**  
-    We plug the coordinates of our guess ($x_1 = 1, x_2 = 0$) into our matrix function. \newline
+    We plug the coordinates of our guess ($x_1 = 1, x_2 = 0$) into our matrix function.\\
     $$H(x_0) = \begin{pmatrix} 1.0 + 1.5(1)^2 & 1.0 \\ 1.0 & 0.5 + 0.5(0)^2 \end{pmatrix} = \begin{pmatrix} 2.5 & 1.0 \\ 1.0 & 0.5 \end{pmatrix}$$
     
     Next, we calculate the standard linear eigenvectors for this fixed matrix $H(x_0)$. The dominant eigenvector (the one corresponding to the largest eigenvalue) is:
