@@ -155,4 +155,4 @@ with col_footer1:
 
 with col_footer2:
     if st.button("➡️ Next: Examples and Calculator"):
-        st.switch_page("pages/3_Examples_and_Solver.py")
+        st.switch_page("pages/2_Examples_and_Solver.py")
