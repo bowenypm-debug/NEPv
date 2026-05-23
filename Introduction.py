@@ -133,4 +133,4 @@ with col_footer1:
 
 with col_footer2:
     if st.button("➡️ Next: Solving Problems"):
-        st.switch_page("pages/2_Examples_and_Solver.py")
+        st.switch_page("pages/2_Examples_and_Calculator.py")
